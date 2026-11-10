@@ -74,7 +74,7 @@ textarea{resize:vertical;min-height:54px}
  @page{size:A4;margin:7mm}
  body{background:#fff}.bar,.view,body::before{display:none!important}
  .main{display:block;padding:0;max-width:none}.pv{overflow:visible}
- .paper{zoom:1!important;margin:0;width:auto;min-height:282mm}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .paper{zoom:1!important;margin:0;width:auto;min-height:var(--ph,262mm)}*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
  body[data-v] .pv{display:block!important}
 }
 .dv{display:flex;align-items:center;gap:10px;margin:14px 0 6px;font-weight:700}.dv::before,.dv::after{content:"";flex:1;border-top:2px solid #000}.dv span{padding:0 6px}
@@ -101,7 +101,7 @@ textarea{resize:vertical;min-height:54px}
 <body data-v="ed">
 <div class="bar">
  <div class="bg b-ed">
-  <h1>مولّد أوراق الامتحان <span class="ver">الإصدار 1.2.0</span></h1>
+  <h1>مولّد أوراق الامتحان <span class="ver">الإصدار 1.2.1</span></h1>
   <button data-a="view" data-v="set-head">⚙ الترويسة</button>
   <button data-a="view" data-v="set-design">🎨 التنسيق</button>
   <span class="tot" id="tot"></span>
@@ -144,6 +144,7 @@ textarea{resize:vertical;min-height:54px}
     <label>علامة بداية السؤال<select data-s="qnum"><option value="dash">شرطة -</option><option value="num">رقم 1-</option></select></label>
     <label>تسمية الأقسام<select data-s="lab"><option value="التمرين|m">التمرين الأول</option><option value="السؤال|m">السؤال الأول</option><option value="الوضعية|f">الوضعية الأولى</option><option value="المسألة|f">المسألة الأولى</option><option value="النشاط|m">النشاط الأول</option></select></label>
     <label>المعروض في المعاينة والطباعة<select data-s="mode"><option value="q">ورقة الأسئلة</option><option value="a">نموذج الإجابة</option><option value="b">الاثنان معاً</option></select></label>
+    <label>ارتفاع الإطار عند الطباعة<select data-s="ph"><option value="262">آمن (يناسب الهاتف)</option><option value="282">ملء صفحة A4 (للحاسوب)</option><option value="0">حسب المحتوى</option></select></label>
     <label>حجم الخط<select data-s="size"><option>11</option><option>12</option><option selected>13</option><option>14</option><option>15</option><option>16</option></select></label>
    </div>
   </div>
@@ -156,14 +157,15 @@ textarea{resize:vertical;min-height:54px}
 <script>
 const T={mcq:'اختيار من متعدد',tf:'صح / خطأ',fill:'أكمل الفراغ',match:'وصل بسهم',essay:'سؤال مقالي',sit:'وضعية إدماجية',qr:'سؤال سورة قرآنية',hd:'سؤال حديث نبوي',tb:'سؤال مع جدول'};
 const ORD=['الأول','الثاني','الثالث','الرابع','الخامس','السادس','السابع','الثامن'];
+const PH=()=>/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent)?'262':'282';
 const DEF=()=>({h:{dir:'',school:'',level:'السنة الأولى متوسط',branch:'',subject:'اللغة العربية',dur:'ساعة واحدة',kind:'اختبار الفصل الأول',year:'2026/2027'},
-s:{frame:'double',font:'Amiri',size:'13',lab:'التمرين|m',qfont:'',tfont:'',qnum:'dash',mode:'q'},
+s:{frame:'double',font:'Amiri',size:'13',lab:'التمرين|m',qfont:'',tfont:'',qnum:'dash',mode:'q',ph:PH()},
 ex:[{t:'',p:'6',q:[{y:'mcq',x:'عاصمة الجزائر هي:',e:'وهران\nالجزائر\nقسنطينة\nعنابة'},{y:'tf',x:'الجزائر دولة عربية إفريقية.'},{y:'fill',x:'تقع الجزائر في شمال ___ وتطل على البحر ___.'}]},
 {t:'',p:'6',q:[{y:'match',x:'صِل كل كلمة بضدها:',e:'كبير | صغير\nطويل | قصير\nسريع | بطيء'}]},
 {t:'الوضعية الإدماجية',p:'8',q:[{y:'sit',x:'1) اقرأ السند ثم لخّص فكرته في سطرين.\n2) اكتب فقرة قصيرة تعبّر فيها عن رأيك.',e:'في صباح يوم ربيعي خرج أحمد مع جدّه إلى الحقل...'}]}]});
 let S;try{S=JSON.parse(localStorage.getItem('exam1'))}catch(e){}
 if(!S||!S.ex)S=DEF();
-S.s=S.s||{};S.s.lab=S.s.lab||'التمرين|m';S.s.qfont=S.s.qfont||'';S.s.tfont=S.s.tfont||'';S.s.qnum=S.s.qnum||'dash';S.s.mode=S.s.mode||'q';
+S.s=S.s||{};S.s.lab=S.s.lab||'التمرين|m';S.s.qfont=S.s.qfont||'';S.s.tfont=S.s.tfont||'';S.s.qnum=S.s.qnum||'dash';S.s.mode=S.s.mode||'q';S.s.ph=S.s.ph||PH();
 const $=s=>document.querySelector(s);
 const esc=v=>String(v==null?'':v).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const lines=v=>String(v||'').split('\n').map(s=>s.trim()).filter(Boolean);
@@ -238,7 +240,7 @@ function ansHTML(){const h=S.h;let tot=0;
  return `<div class="hd"><div class="r">الجمهورية الجزائرية الديمقراطية الشعبية</div><div class="m">وزارة التربية الوطنية</div></div><div class="ttl">نموذج الإجابة وسلم التنقيط<br><span style="font-weight:400;font-size:.9em">${esc(h.kind)} في مادة ${esc(h.subject)} — ${esc(h.level)}${h.branch?' — '+esc(h.branch):''} — ${esc(h.year)}</span></div>${rows}<div class="end">المجموع: ${tot} / 20</div>`}
 function pv(){
  const h=S.h,s=S.s,p=$('#paper');
- p.className='paper f-'+s.frame;p.style.setProperty('--fs',s.size+'pt');p.style.fontFamily=`'${s.font}',Amiri,serif`;if(s.tfont)p.style.setProperty('--tf',`'${s.tfont}',Amiri,serif`);else p.style.removeProperty('--tf');p.style.setProperty('--qf',s.qfont?`'${s.qfont}',Amiri,serif`:'inherit');
+ p.className='paper f-'+s.frame;p.style.setProperty('--fs',s.size+'pt');p.style.setProperty('--ph',(s.ph||'262')+'mm');p.style.fontFamily=`'${s.font}',Amiri,serif`;if(s.tfont)p.style.setProperty('--tf',`'${s.tfont}',Amiri,serif`);else p.style.removeProperty('--tf');p.style.setProperty('--qf',s.qfont?`'${s.qfont}',Amiri,serif`:'inherit');
  p.innerHTML=`<div class="hd"><div class="r">الجمهورية الجزائرية الديمقراطية الشعبية</div><div class="m">وزارة التربية الوطنية</div></div>
  <div class="inf"><div><span>مديرية التربية لولاية: ${esc(h.dir)||'..........'}</span><span>المؤسسة: ${esc(h.school)||'..........'}</span><span>المستوى: ${esc(h.level)}</span></div><div style="text-align:left"><span>السنة الدراسية: ${esc(h.year)}</span><span>المدة: ${esc(h.dur)}</span>${h.branch?`<span>الشعبة: ${esc(h.branch)}</span>`:''}</div></div>
  <div class="ttl">${esc(h.kind)} في مادة ${esc(h.subject)}</div>

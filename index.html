@@ -115,7 +115,7 @@ input,select,textarea{border-radius:10px;min-height:42px}textarea{min-height:60p
 </head>
 <body data-v="ed">
 <div class="bar">
- <div class="bg b-top"><h1>مولّد أوراق الامتحان <span class="ver">الإصدار 1.5.0</span></h1><button id="inst" data-a="install" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg> تثبيت</button></div>
+ <div class="bg b-top"><h1>مولّد أوراق الامتحان <span class="ver">الإصدار 1.5.1</span></h1><button id="inst" data-a="install" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg> تثبيت</button></div>
  <div class="bg b-nav nav">
   <button class="p" data-a="view" data-v="pv"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> معاينة</button>
   <button data-a="view" data-v="set-head"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> الترويسة</button>
@@ -183,6 +183,8 @@ ex:[{t:'',p:'6',q:[{y:'mcq',x:'عاصمة الجزائر هي:',e:'وهران\n�
 let S;try{S=JSON.parse(localStorage.getItem('exam1'))}catch(e){}
 if(!S||!S.ex)S=DEF();
 S.ex.forEach(x=>{if(x.d>=2&&!x.q)x.q=[]});
+const lat=s=>String(s==null?'':s).replace(/[٠-٩]/g,c=>'٠١٢٣٤٥٦٧٨٩'.indexOf(c));
+S.ex.forEach(x=>{if(x.d==2){x.e=lat(x.e);x.cap=lat(x.cap)}(x.q||[]).forEach(q=>{if(q.y=='qr'){q.e=lat(q.e);q.cap=lat(q.cap)}})});
 S.s=S.s||{};S.s.lab=S.s.lab||'التمرين|m';S.s.qfont=S.s.qfont||'';S.s.tfont=S.s.tfont||'';S.s.qnum=S.s.qnum||'dash';S.s.mode=S.s.mode||'q';S.s.ph=S.s.ph||PH();if(S.s.ph=='262')S.s.ph='safe';if(S.s.ph=='282'||S.s.ph=='286')S.s.ph='full';
 ['pa','pc'].forEach(p=>['t','r','b','l'].forEach(k=>{S.s[p+'_'+k]=S.s[p+'_'+k]||'5'}));
 const $=s=>document.querySelector(s);
@@ -194,7 +196,7 @@ const exNo=i=>S.ex.slice(0,i).filter(z=>!z.d).length;
 const ORDF=['الأولى','الثانية','الثالثة','الرابعة','الخامسة','السادسة','السابعة','الثامنة'];
 function exName(i){const [w,g]=(S.s.lab||'التمرين|m').split('|'),n=exNo(i);return w+' '+((g=='f'?ORDF:ORD)[n]||n+1)}
 const W=JSON.parse($('#W').textContent);
-const toAr=n=>String(n).replace(/\d/g,c=>'٠١٢٣٤٥٦٧٨٩'[c]);
+const toAr=n=>String(n);
 function fillQ(q){const a=W.a[q.su]||[];const f=Math.min(a.length,Math.max(1,+q.fa||1)),t=Math.min(a.length,Math.max(f,+q.ta||f));
  q.e='\uFD3F '+a.slice(f-1,t).map((v,i)=>v+' ('+toAr(f+i)+')').join(' ')+' \uFD3E';
  q.cap='سورة '+(W.n[q.su-1]||'')+' — الآيات '+toAr(f)+(t>f?' إلى '+toAr(t):'')+' — برواية ورش عن نافع'}

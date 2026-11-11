@@ -14,20 +14,26 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Amiri+Quran&family=Cairo:wght@400;700&family=Tajawal:wght@400;700&family=Noto+Naskh+Arabic:wght@400;700&display=swap">
 <style>
-:root{--bg:#f3efe6;--card:#fffdf8;--ink:#1d2b2a;--mut:#6b7774;--ac:#0f5c4d;--ac2:#c8a24a;--bd:#d9d2c0;--warn:#b3261e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151b1a;--card:#1f2827;--ink:#e8efed;--mut:#98a5a2;--ac:#4cc3a6;--ac2:#d8b45e;--bd:#33403e;--warn:#ff8a80}}
+:root{--bg:#f3efe6;--card:#fffdf8;--ink:#1d2b2a;--mut:#6b7774;--ac:#0f5c4d;--ac2:#c8a24a;--bd:#d9d2c0;--warn:#b3261e;--acd:#0a4439;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151b1a;--card:#1f2827;--ink:#e8efed;--mut:#98a5a2;--ac:#4cc3a6;--ac2:#d8b45e;--bd:#33403e;--warn:#ff8a80;--acd:#2a8f79}}
 *{box-sizing:border-box}html,body{margin:0}
 body{background:var(--bg);color:var(--ink);font-family:Tajawal,Cairo,sans-serif;font-size:15px}
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px 14px;background:var(--card);border-bottom:2px solid var(--ac)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--card);z-index:10}
 .bar h1{font-size:18px;margin:0;margin-inline-end:auto;font-family:Amiri,serif;color:var(--ac)}
-button{font:inherit;cursor:pointer;border:1px solid var(--bd);background:var(--card);color:var(--ink);padding:7px 12px;border-radius:8px}
-button.p{background:var(--ac);color:#fff;border-color:var(--ac)}
+button{font:inherit;cursor:pointer;min-height:44px;padding:8px 14px;border-radius:12px;border:1px solid var(--bd);background:var(--card);background:linear-gradient(var(--card),var(--bg));color:var(--ink);box-shadow:0 3px 0 var(--bd),0 5px 9px rgba(0,0,0,.12);display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:transform .08s,box-shadow .08s;-webkit-tap-highlight-color:transparent}
+button:active,button.on{transform:translateY(3px);box-shadow:0 0 0 var(--bd),inset 0 2px 5px rgba(0,0,0,.18)}
+button.p{background:var(--ac);background:linear-gradient(color-mix(in srgb,var(--ac) 82%,#fff),var(--ac));color:#fff;border-color:var(--acd);box-shadow:0 3px 0 var(--acd),0 5px 9px rgba(0,0,0,.18)}
+button.p:active{box-shadow:0 0 0 var(--acd),inset 0 2px 5px rgba(0,0,0,.25)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.p{color:#06231c}}
+.ic{flex:none}
 button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--ac2);outline-offset:1px}
-.tot{font-size:13px;padding:4px 10px;border-radius:20px;border:1px solid var(--ac)}.tot.bad{border-color:var(--warn);color:var(--warn)}
+.tot{font-size:13px;font-weight:700;padding:5px 12px;border-radius:20px;border:1px solid var(--ac);margin-inline-start:auto;white-space:nowrap}.tot.bad{border-color:var(--warn);color:var(--warn)}
 .bg{display:none;gap:8px;align-items:center;flex-wrap:wrap;width:100%}
-body[data-v="ed"] .b-ed,body[data-v="pv"] .b-pv,body[data-v^="set"] .b-set{display:flex}
-.b-pv .p{margin-inline-start:auto}
+body[data-v="ed"] .b-top,body[data-v="ed"] .b-nav,body[data-v^="set"] .b-nav,body[data-v^="set"] .b-set,body[data-v="pv"] .b-pv{display:flex}
+.nav button{padding:6px 11px;font-size:13px;min-height:42px}
+.b-set b{font-size:15px;color:var(--ac)}
+.b-pv select{width:auto;flex:1;min-width:120px}
 .main{max-width:760px;margin:0 auto;padding:14px}
 .view{display:none}
 body[data-v="ed"] #ed,body[data-v="set-head"] #v-head,body[data-v="set-design"] #v-design{display:flex;flex-direction:column;gap:12px}
@@ -98,20 +104,26 @@ textarea{resize:vertical;min-height:54px}
 .ver{font-family:Tajawal,sans-serif;font-size:11px;color:var(--mut);border:1px solid var(--bd);border-radius:10px;padding:1px 7px;margin-inline-start:6px;font-weight:400}
 #s-head,#s-design{scroll-margin-top:90px}
 .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:6px}
+
+.sec{border-radius:14px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 6px 14px rgba(0,0,0,.05)}
+input,select,textarea{border-radius:10px;min-height:42px}textarea{min-height:60px}
+.add button,.hit button{min-height:36px;padding:4px 11px;font-size:13px;box-shadow:0 2px 0 var(--bd),0 3px 6px rgba(0,0,0,.1)}
+.x{min-height:34px;color:var(--warn);padding:2px 10px;font-size:13px}.mvb{display:inline-flex;gap:6px}.mvb button{min-height:34px;padding:2px 10px;font-size:14px}
+.badge{background:color-mix(in srgb,var(--ac) 14%,transparent);color:var(--ac);border-radius:20px;padding:1px 10px;font-size:12px;font-weight:700}
+@media (prefers-reduced-motion:reduce){button{transition:none}}
 </style>
 </head>
 <body data-v="ed">
 <div class="bar">
- <div class="bg b-ed">
-  <h1>مولّد أوراق الامتحان <span class="ver">الإصدار 1.3.1</span></h1>
-  <button data-a="view" data-v="set-head">⚙ الترويسة</button>
-  <button data-a="view" data-v="set-design">🎨 التنسيق</button>
+ <div class="bg b-top"><h1>مولّد أوراق الامتحان <span class="ver">الإصدار 1.4.0</span></h1><button id="inst" data-a="install" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg> تثبيت</button></div>
+ <div class="bg b-nav nav">
+  <button class="p" data-a="view" data-v="pv"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> معاينة</button>
+  <button data-a="view" data-v="set-head"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> الترويسة</button>
+  <button data-a="view" data-v="set-design"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg> التنسيق</button>
   <span class="tot" id="tot"></span>
-  <button id="inst" data-a="install" style="display:none">📲 تثبيت التطبيق</button>
-  <button class="p" data-a="view" data-v="pv">👁 معاينة</button>
  </div>
- <div class="bg b-pv"><button data-a="back">→ رجوع</button><button class="p" data-a="print">🖨 طباعة / حفظ PDF</button></div>
- <div class="bg b-set"><button data-a="back">→ رجوع</button><b id="stitle"></b></div>
+ <div class="bg b-set"><button data-a="back"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> الأسئلة</button><b id="stitle"></b></div>
+ <div class="bg b-pv"><button data-a="back"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> رجوع</button><select data-s="mode" aria-label="المعروض"><option value="q">ورقة الأسئلة</option><option value="a">نموذج الإجابة</option><option value="b">الاثنان معاً</option></select><button class="p" data-a="print" style="margin-inline-start:auto"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/></svg> طباعة</button></div>
 </div>
 <div class="main">
  <div id="ed" class="view">
@@ -145,7 +157,6 @@ textarea{resize:vertical;min-height:54px}
     <label>خط عناوين الأسئلة والأجزاء<select data-s="tfont"><option value="">نفس خط الأسئلة</option><option value="Amiri">أميري</option><option value="Cairo">القاهرة</option><option value="Tajawal">تجوال</option><option value="Noto Naskh Arabic">نسخ</option></select></label>
     <label>علامة بداية السؤال<select data-s="qnum"><option value="dash">شرطة -</option><option value="num">رقم 1-</option></select></label>
     <label>تسمية الأقسام<select data-s="lab"><option value="التمرين|m">التمرين الأول</option><option value="السؤال|m">السؤال الأول</option><option value="الوضعية|f">الوضعية الأولى</option><option value="المسألة|f">المسألة الأولى</option><option value="النشاط|m">النشاط الأول</option></select></label>
-    <label>المعروض في المعاينة والطباعة<select data-s="mode"><option value="q">ورقة الأسئلة</option><option value="a">نموذج الإجابة</option><option value="b">الاثنان معاً</option></select></label>
     <label>حجم الخط<select data-s="size"><option>11</option><option>12</option><option selected>13</option><option>14</option><option>15</option><option>16</option></select></label>
    </div>
   </div>
@@ -202,16 +213,20 @@ function hsearch(i,j){const sel=k=>document.querySelector(`[${k}][data-e="${i}"]
  const all=hlib().filter(ok),sh=all.slice(0,12);
  box.innerHTML=`<small style="color:var(--mut)">${toAr(all.length)} نتيجة${all.length>12?' (تظهر أول ١٢، أضف كلمات لتضييق البحث)':''}</small>`+sh.map(a=>`<div class="hit"><div>${esc(a.t.length>170?a.t.slice(0,170)+'…':a.t)}</div><small>${esc(a.c)} — ${esc(a.g)} — ${a.w} كلمة — رقم ${a.id}</small><button data-a="pickH" data-e="${i}" data-q="${j}" data-id="${a.id}">اختيار</button></div>`).join('')}
 function newQ(y){const nq={y,x:'',e:y=='essay'?'4':''};if(y=='qr'){Object.assign(nq,{su:'112',fa:'1',ta:'4',pre:''});fillQ(nq)}if(y=='tb')nq.g=[['العمود 1','العمود 2','العمود 3'],['','',''],['','','']];if(y=='match')nq.m=[['',''],['',''],['','']];return nq}
+const MV=i=>`<span class="mvb"><button data-a="mv" data-e="${i}" data-t="u" aria-label="أعلى">↑</button><button data-a="mv" data-e="${i}" data-t="d" aria-label="أسفل">↓</button><button class="x" data-a="delEx" data-e="${i}">حذف</button></span>`;
+const qblock=x=>`<div class="ex"><div class="qr">${x.pre?esc(x.pre)+' ':''}${esc(x.e)}${x.cap?`<div class="src">${esc(x.cap)}</div>`:''}</div></div>`;
+function QB(i,x){const at=`data-e="${i}"`,so=(v)=>`<option value="${v}"${x.pre==v?' selected':''}>${v||'بدون'}</option>`;
+ return `<div class="sec" style="margin-bottom:12px"><div class="qh"><span>📖 سورة قرآنية (نص مستقل)</span>${MV(i)}</div><label>السورة<select ${at} data-k="su">${W.n.map((n,k)=>`<option value="${k+1}"${k+1==x.su?' selected':''}>${k+1}. ${esc(n)}</option>`).join('')}</select></label><div class="g"><label>من الآية<input type="number" min="1" ${at} data-k="fa" value="${esc(x.fa)}"></label><label>إلى الآية<input type="number" min="1" ${at} data-k="ta" value="${esc(x.ta)}"></label></div><label>عبارة قبل الآية<select ${at} data-k="pre">${so('')}${so('قال الله تعالى:')}${so('قال تعالى:')}</select></label><label>المصدر تحت النص<input ${at} data-k="cap" value="${esc(x.cap)}"></label><label>النص (يمكن تعديله)<textarea ${at} data-k="e">${esc(x.e)}</textarea></label></div>`}
 function addUI(){const w=(S.s.lab||'التمرين|m').split('|')[0].replace(/^ال/,'');
- $('#addb').innerHTML=`<button class="p" data-a="addPick" data-y="">+ ${w} جديد</button>`+Object.keys(T).map(k=>`<button data-a="addPick" data-y="${k}">${T[k]}</button>`).join('')}
+ $('#addb').innerHTML=`<button class="p" data-a="addPick" data-y="">+ ${w} جديد</button>`+Object.keys(T).map(k=>`<button data-a="addPick" data-y="${k}">${T[k]}</button>`).join('')+'<button data-a="addSb">📖 سورة قرآنية (نص مستقل)</button>'}
 function HD(i,j,q){const at=`data-e="${i}" data-q="${j}"`;
  return `<div class="sec" style="padding:8px"><label>ابحث في مكتبة الأحاديث (كلمة من الحديث أو رقمه)<input ${at} data-hs placeholder="مثال: النيات"></label><label>اقتراح حسب الطور (حسب طول الحديث فقط)<select ${at} data-hl><option value="">كل الأحاديث</option><option value="1">ابتدائي (قصيرة)</option><option value="2">متوسط</option><option value="3">ثانوي (أطول)</option></select></label><div class="hres" id="hr-${i}-${j}"></div></div>`+`<label>نص الحديث<textarea ${at} data-k="e">${esc(q.e)}</textarea></label><div class="g"><label>الراوي<input ${at} data-k="r" value="${esc(q.r)}"></label><label>المخرّج / المصدر<input ${at} data-k="c" value="${esc(q.c)}"></label></div>`}
 function ed(){
  document.querySelectorAll('[data-h]').forEach(i=>i.value=S.h[i.dataset.h]);
  document.querySelectorAll('[data-s]').forEach(i=>i.value=S.s[i.dataset.s]);
- $('#exs').innerHTML=S.ex.map((x,i)=>x.d?`<div class="sec" style="margin-bottom:12px"><div class="qh"><span>فاصل</span><button class="x" data-a="delEx" data-e="${i}">حذف</button></div><label>نص الفاصل<input data-e="${i}" data-k="t" value="${esc(x.t)}"></label></div>`:`<div class="sec" style="margin-bottom:12px"><div class="qh"><span>${exName(i)}</span><button class="x" data-a="delEx" data-e="${i}">حذف</button></div>
+ $('#exs').innerHTML=S.ex.map((x,i)=>x.d==2?QB(i,x):x.d?`<div class="sec" style="margin-bottom:12px"><div class="qh"><span>فاصل</span>${MV(i)}</div><label>نص الفاصل<input data-e="${i}" data-k="t" value="${esc(x.t)}"></label></div>`:`<div class="sec" style="margin-bottom:12px"><div class="qh"><span>${exName(i)}</span>${MV(i)}</div>
  <div class="g" style="margin-top:8px"><label>العنوان (اختياري)<input data-e="${i}" data-k="t" value="${esc(x.t)}"></label><label>النقطة<input type="number" step="0.25" data-e="${i}" data-k="p" value="${esc(x.p)}"></label></div>
- ${x.q.map((q,j)=>`<div class="q"><div class="qh"><span>${j+1}. ${T[q.y]}</span><button class="x" data-a="delQ" data-e="${i}" data-q="${j}">✕</button></div>
+ ${x.q.map((q,j)=>`<div class="q"><div class="qh"><span>${j+1}. <span class="badge">${T[q.y]}</span></span><button class="x" data-a="delQ" data-e="${i}" data-q="${j}">✕</button></div>
  <label>${(q.y=='sit'||q.y=='qr'||q.y=='hd')?'التعليمات (مثل: اشرح، استخرج، أعرب...)':q.y=='fill'?'النص (اكتب ___ مكان الفراغ)':'نص السؤال'}<textarea data-e="${i}" data-q="${j}" data-k="x">${esc(q.x)}</textarea></label>
  ${q.y=='mcq'?`<label>الاقتراحات (سطر لكل اقتراح)<textarea data-e="${i}" data-q="${j}" data-k="e">${esc(q.e)}</textarea></label>`:''}
  ${q.y=='match'?MT(i,j,q):''}
@@ -241,7 +256,7 @@ function qhtml0(q,n){
 const qlab=(q,n)=>{let s=(q.x||q.cap||T[q.y]||'').replace(/\s+/g,' ').trim();if(s.length>46)s=s.slice(0,46)+'…';return n+') '+s};
 const ansOf=q=>q.ans?nl(q.ans):(q.y=='match'?mOf(q).map(r=>esc(r[0])+' ↔ '+esc(r[1])).join('<br>'):'&nbsp;');
 function ansHTML(){const h=S.h;let tot=0;
- const rows=S.ex.map((x,i)=>{if(x.d)return `<div class="dv"><span>${esc(x.t)}</span></div>`;
+ const rows=S.ex.map((x,i)=>{if(x.d==2)return '';if(x.d)return `<div class="dv"><span>${esc(x.t)}</span></div>`;
   const p=parseFloat(x.p)||0;tot+=p;const qs=x.q.reduce((a,q)=>a+(parseFloat(q.pt)||0),0),warn=qs>0&&Math.abs(qs-p)>1e-9?`<span class="aw"> (تنبيه: مجموع نقاط الأسئلة ${qs})</span>`:'';
   return `<div class="ex"><div class="exh"><span>${exName(i)}${x.t?': '+esc(x.t):''}</span><span>(${esc(x.p||0)} ن)${warn}</span></div><table class="tb at"><tr><th style="width:28%">السؤال</th><th>الإجابة النموذجية</th><th style="width:12%">العلامة</th></tr>${x.q.map((q,j)=>`<tr><td>${esc(qlab(q,j+1))}</td><td>${ansOf(q)}</td><td>${q.pt?esc(q.pt):''}</td></tr>`).join('')||'<tr><td colspan="3">&nbsp;</td></tr>'}</table></div>`}).join('');
  return `<div class="hd"><div class="r">الجمهورية الجزائرية الديمقراطية الشعبية</div><div class="m">وزارة التربية الوطنية</div></div><div class="ttl">نموذج الإجابة وسلم التنقيط<br><span style="font-weight:400;font-size:.9em">${esc(h.kind)} في مادة ${esc(h.subject)} — ${esc(h.level)}${h.branch?' — '+esc(h.branch):''} — ${esc(h.year)}</span></div>${rows}<div class="end">المجموع: ${tot} / 20</div>`}
@@ -257,7 +272,7 @@ function pv(){
  <div class="inf"><div><span>مديرية التربية لولاية: ${esc(h.dir)||'..........'}</span><span>المؤسسة: ${esc(h.school)||'..........'}</span><span>المستوى: ${esc(h.level)}</span></div><div style="text-align:left"><span>السنة الدراسية: ${esc(h.year)}</span><span>المدة: ${esc(h.dur)}</span>${h.branch?`<span>الشعبة: ${esc(h.branch)}</span>`:''}</div></div>
  <div class="ttl">${esc(h.kind)} في مادة ${esc(h.subject)}</div>
  <div class="stu"><span>الاسم واللقب: ....................................</span><span>القسم: ..........</span><span>النقطة: ....... / 20</span></div>
- ${S.ex.map((x,i)=>x.d?`<div class="dv"><span>${esc(x.t)}</span></div>`:`<div class="ex"><div class="exh"><span>${exName(i)}${x.t?': '+esc(x.t):''}</span><span>(${esc(x.p||0)} ن)</span></div>${x.q.map((q,j)=>qhtml(q,j+1)).join('')}</div>`).join('')}
+ ${S.ex.map((x,i)=>x.d==2?qblock(x):x.d?`<div class="dv"><span>${esc(x.t)}</span></div>`:`<div class="ex"><div class="exh"><span>${exName(i)}${x.t?': '+esc(x.t):''}</span><span>(${esc(x.p||0)} ن)</span></div>${x.q.map((q,j)=>qhtml(q,j+1)).join('')}</div>`).join('')}
  <div class="end">بالتوفيق والنجاح</div>`;
  const tot=S.ex.reduce((a,x)=>a+(parseFloat(x.p)||0),0),t=$('#tot');
  t.textContent='المجموع: '+tot+' / 20';t.className='tot'+(tot==20?'':' bad');
@@ -273,7 +288,7 @@ document.addEventListener('input',e=>{
  if('gr' in d){gOf(S.ex[d.e].q[d.q])[d.gr][d.gc]=t.value;upd();return}
  if('mr' in d){mOf(S.ex[d.e].q[d.q])[d.mr][d.mc]=t.value;upd();return}
  if(d.h)S.h[d.h]=t.value;else if(d.s)S.s[d.s]=t.value;
- else if(d.k){const x=S.ex[d.e];if(d.q!==undefined){const q=x.q[d.q];q[d.k]=t.value;if(['su','fa','ta'].includes(d.k)){fillQ(q);for(const k of ['e','cap']){const el=document.querySelector(`[data-e="${d.e}"][data-q="${d.q}"][data-k="${k}"]`);if(el)el.value=q[k]}}}else x[d.k]=t.value}
+ else if(d.k){const x=S.ex[d.e];if(d.q!==undefined){const q=x.q[d.q];q[d.k]=t.value;if(['su','fa','ta'].includes(d.k)){fillQ(q);for(const k of ['e','cap']){const el=document.querySelector(`[data-e="${d.e}"][data-q="${d.q}"][data-k="${k}"]`);if(el)el.value=q[k]}}}else{x[d.k]=t.value;if(x.d==2&&['su','fa','ta'].includes(d.k)){fillQ(x);for(const k of ['e','cap']){const el=document.querySelector(`[data-e="${d.e}"][data-k="${k}"]:not([data-q])`);if(el)el.value=x[k]}}}}
  else return;upd();
 });
 document.addEventListener('click',e=>{
@@ -295,7 +310,9 @@ document.addEventListener('click',e=>{
   if(t=='mr')mOf(q).push(['','']);else if(t=='mdr'){const m=mOf(q);if(m.length>1)m.pop()}
   else{const g=gOf(q);if(t=='r')g.push(g[0].map(()=>''));else if(t=='dr'){if(g.length>1)g.pop()}else if(t=='c')g.forEach(r=>r.push(''));else if(t=='dc'){if(g[0].length>1)g.forEach(r=>r.pop())}}
   ed();upd()}
- else if(a=='addDv'){S.ex.push({d:1,t:'الجزء '+(S.ex.filter(z=>z.d).length+1)});ed();upd()}
+ else if(a=='addSb'){const b={d:2,su:'112',fa:'1',ta:'4',pre:''};fillQ(b);S.ex.unshift(b);$('#addp').hidden=true;ed();upd();const el=$('#exs').children[0];if(el)el.scrollIntoView({behavior:'smooth',block:'center'})}
+ else if(a=='mv'){const i=+d.e,j=d.t=='u'?i-1:i+1;if(j>=0&&j<S.ex.length){[S.ex[i],S.ex[j]]=[S.ex[j],S.ex[i]];ed();upd()}}
+ else if(a=='addDv'){S.ex.push({d:1,t:'الجزء '+(S.ex.filter(z=>z.d==1).length+1)});ed();upd()}
  else if(a=='delEx'){if(confirm('حذف هذا التمرين؟')){S.ex.splice(d.e,1);ed();upd()}}
  else if(a=='addQ'){S.ex[d.e].q.push(newQ(d.y));ed();upd()}
  else if(a=='delQ'){S.ex[d.e].q.splice(d.q,1);ed();upd()}
@@ -303,7 +320,7 @@ document.addEventListener('click',e=>{
 });
 addEventListener('resize',fit);
 const VT={'set-head':'إعدادات الترويسة','set-design':'تنسيق الصفحة'};let SY=0;
-function go(v,push=true){if(document.body.dataset.v=='ed'&&v!='ed')SY=window.scrollY;document.body.dataset.v=v;const t=$('#stitle');if(t)t.textContent=VT[v]||'';if(v=='pv')pv();window.scrollTo(0,v=='ed'?SY:0);if(push&&v!='ed'){try{history.pushState({v},'')}catch(x){}}}
+function go(v,push=true){if(push&&document.body.dataset.v==v)return;document.querySelectorAll('.nav button[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v==v));if(document.body.dataset.v=='ed'&&v!='ed')SY=window.scrollY;document.body.dataset.v=v;const t=$('#stitle');if(t)t.textContent=VT[v]||'';if(v=='pv')pv();window.scrollTo(0,v=='ed'?SY:0);if(push&&v!='ed'){try{history.pushState({v},'')}catch(x){}}}
 addEventListener('popstate',e=>go((e.state&&e.state.v)||'ed',false));
 try{history.replaceState({v:'ed'},'')}catch(x){}
 let LF=null,REC=null,LIS=false;

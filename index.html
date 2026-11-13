@@ -144,6 +144,8 @@ input,select,textarea{border-radius:10px;min-height:42px}textarea{min-height:60p
 .pb{display:inline-block;width:3.6em;height:1.5em;border:1.3px solid #000;border-radius:8px;vertical-align:middle;margin:0 4px}
 .foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px;font-weight:700}
 .sg{display:inline-flex;align-items:center;gap:8px}.sgi{object-fit:contain}
+body[data-v="set-saves"] #v-saves{display:flex;flex-direction:column;gap:12px}
+.svi{border:1px solid var(--bd);border-radius:12px;padding:8px 10px;margin-top:8px}.svi b{display:block;line-height:1.7}.svi small{color:var(--mut)}
 @media print{
  .sheet{zoom:1!important;width:auto;height:auto;padding:0;margin:0;box-shadow:none;background:none;break-after:page;page-break-after:always}
  .sheet:last-child{break-after:auto;page-break-after:auto}
@@ -153,7 +155,8 @@ input,select,textarea{border-radius:10px;min-height:42px}textarea{min-height:60p
 </head>
 <body data-v="ed">
 <div class="bar">
- <div class="bg b-top"><h1>مولّد أوراق الامتحان <span class="ver">الإصدار 1.7.0</span></h1><button id="inst" data-a="install" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg> تثبيت</button></div>
+ <div class="bg b-top"><h1>مولّد أوراق الامتحان <span class="ver">الإصدار 1.8.0</span></h1><button data-a="view" data-v="set-saves"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg> المحفوظات</button>
+  <button id="inst" data-a="install" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg> تثبيت</button></div>
  <div class="bg b-nav nav">
   <button class="p" data-a="view" data-v="pv"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> معاينة</button>
   <button data-a="view" data-v="set-head"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> الترويسة</button>
@@ -222,6 +225,18 @@ input,select,textarea{border-radius:10px;min-height:42px}textarea{min-height:60p
    <b style="font-size:13px">الهاتف (أندرويد / آيفون)</b><div class="g4"><label>أعلى<input type="number" step="0.5" min="0" max="30" data-s="pa_t"></label><label>يمين<input type="number" step="0.5" min="0" max="30" data-s="pa_r"></label><label>أسفل<input type="number" step="0.5" min="0" max="30" data-s="pa_b"></label><label>يسار<input type="number" step="0.5" min="0" max="30" data-s="pa_l"></label></div>
    <b style="font-size:13px;display:block;margin-top:10px">الحاسوب</b><div class="g4"><label>أعلى<input type="number" step="0.5" min="0" max="30" data-s="pc_t"></label><label>يمين<input type="number" step="0.5" min="0" max="30" data-s="pc_r"></label><label>أسفل<input type="number" step="0.5" min="0" max="30" data-s="pc_b"></label><label>يسار<input type="number" step="0.5" min="0" max="30" data-s="pc_l"></label></div>
    <span style="font-size:12px;color:var(--mut);line-height:1.8;display:block;margin-top:8px">يُطبَّق منها ما يخص الجهاز الذي تستعمله الآن. 5 مم = 0.5 سم. قد تفرض بعض الطابعات وخدمات الطباعة هوامش دنيا أكبر، فإن لم يتغير شيء احفظ الورقة PDF ثم اطبعها.</span>
+  </div>
+ </div>
+ <div id="v-saves" class="view">
+  <div class="sec"><h2>حفظ نسخة من الاختبار الحالي</h2>
+   <label>اسم النسخة<input id="svname"></label>
+   <div class="add"><button class="p" data-a="svSave">حفظ نسخة</button></div>
+   <span style="font-size:12px;color:var(--mut);line-height:1.8;display:block;margin-top:6px">تُحفظ الأسئلة والترويسة والتنسيق. أما صورة الإمضاء وهوامش الطباعة فتبقى إعدادات الجهاز ولا تتغير عند فتح نسخة.</span>
+  </div>
+  <div class="sec"><h2>الاختبارات المحفوظة</h2><div id="svlist"></div>
+   <div class="add" style="margin-top:12px"><button data-a="svExp">تصدير الكل (ملف)</button></div>
+   <label style="margin-top:8px">استيراد ملف نسخ<input type="file" id="svfile" accept="application/json,.json"></label>
+   <span style="font-size:12px;color:var(--mut);line-height:1.8;display:block;margin-top:6px">النسخ محفوظة في هذا المتصفح فقط. استعمل التصدير للاحتفاظ بنسخة احتياطية أو لنقلها إلى جهاز آخر.</span>
   </div>
  </div>
  <div class="pv view" id="pv"><div id="pages"></div></div>
@@ -327,11 +342,11 @@ function qhtml0(q,n){
 }
 const qlab=(q,n)=>{let s=(q.x||q.cap||T[q.y]||'').replace(/\s+/g,' ').trim();if(s.length>46)s=s.slice(0,46)+'…';return n+') '+s};
 const ansOf=q=>q.ans?nl(q.ans):(q.y=='match'?mOf(q).map(r=>esc(r[0])+' ↔ '+esc(r[1])).join('<br>'):'&nbsp;');
-function ansHTML(){const h=S.h;let tot=0;
+function ansHTML(){const h=S.h,dl=dateLine();let tot=0;
  const rows=S.ex.map((x,i)=>{if(x.d>=2){tot+=ptsOf(x);return ablock(x)}if(x.d)return `<div class="dv"><span>${esc(x.t)}</span></div>`;
   const p=parseFloat(x.p)||0;tot+=p;const qs=x.q.reduce((a,q)=>a+(parseFloat(q.pt)||0),0),warn=qs>0&&Math.abs(qs-p)>1e-9?`<span class="aw"> (تنبيه: مجموع نقاط الأسئلة ${qs})</span>`:'';
   return `<div class="exh"><span>${exName(i)}${x.t?': '+esc(x.t):''}</span><span>(${esc(x.p||0)} ن)${warn}</span></div>${ahead}${arows(x.q)}`}).join('');
- return `<div class="hd"><div class="r">الجمهورية الجزائرية الديمقراطية الشعبية</div><div class="m">وزارة التربية الوطنية</div></div><div class="ttl">نموذج الإجابة وسلم التنقيط<br><span style="font-weight:400;font-size:.9em">${esc(h.kind)} في مادة ${esc(h.subject)} — ${esc(h.level)}${h.branch?' — '+esc(h.branch):''} — ${esc(h.year)}</span></div>${rows}<div class="end">المجموع: ${Math.round(tot*100)/100} / 20</div>`}
+ return `<div class="ttl">نموذج الإجابة وسلم التنقيط<br><span style="font-weight:400;font-size:.9em">${esc(h.kind)} في مادة ${esc(h.subject)} — ${esc(h.level)}${h.branch?' — '+esc(h.branch):''} — ${esc(h.year)}</span></div>${dl?`<div class="dt">${esc(dl)}</div>`:''}${rows}<div class="end">المجموع: ${Math.round(tot*100)/100} / 20</div>`}
 function pageMargins(){const m=/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent)?'pa':'pc';return ['t','r','b','l'].map(k=>{const v=parseFloat(S.s[m+'_'+k]);return isNaN(v)?5:Math.min(30,Math.max(0,v))})}
 function applyPage(){const [t,r,b,l]=pageMargins();let st=document.getElementById('pgs');if(!st){st=document.createElement('style');st.id='pgs';document.head.appendChild(st)}
  st.textContent=`@page{size:A4;margin:${t}mm ${r}mm ${b}mm ${l}mm}`;
@@ -375,7 +390,8 @@ function buildPages(mk){const host=$('#pages'),s=S.s,sheets=[];let cont,avail;
 let EXN=0;
 function renderPages(){const host=$('#pages');host.innerHTML='';const md=S.s.mode||'q';let n1=0,n2=0;
  if(md!='a')n1=buildPages(()=>mkAtoms(examHTML()));if(md!='q')n2=buildPages(()=>mkAtoms(ansHTML()));
- EXN=n1;$('#pgc').textContent=md=='b'?`الأسئلة ${n1} · الإجابة ${n2}`:`الصفحات: ${n1||n2}`;fit()}
+ EXN=n1;const fb=document.querySelector('[data-a="fit1"]');if(fb){const t=n1-1;fb.textContent=n1>1?'ملاءمة في '+(t==1?'صفحة واحدة':t==2?'صفحتين':t+' صفحات'):'ملاءمة'}
+ $('#pgc').textContent=md=='b'?`الأسئلة ${n1} · الإجابة ${n2}`:`الصفحات: ${n1||n2}`;fit()}
 function pv(){
  const tot=Math.round(S.ex.reduce((a,x)=>a+ptsOf(x),0)*100)/100,t=$('#tot');
  t.textContent='المجموع: '+tot+' / 20';t.className='tot'+(tot==20?'':' bad');
@@ -383,9 +399,12 @@ function pv(){
  if(document.body.dataset.v=='pv'){try{renderPages()}catch(e){$('#pages').innerHTML='<div class="sec">تعذّر عرض المعاينة: '+esc(e.message)+'</div>'}}
 }
 function fit(){const w=$('#pv').clientWidth;if(w<50)return;document.querySelectorAll('.sheet').forEach(s=>s.style.zoom=Math.min(1,(w-4)/794)||1)}
-function fitOne(){const o=S.s.size,m0=S.s.mode;let sz=parseFloat(o)||13;if(m0=='a')S.s.mode='q';
- for(;sz>=10;sz-=0.5){S.s.size=String(sz);pv();if(EXN<=1)break}
- const ok=EXN<=1;if(!ok)S.s.size=o;S.s.mode=m0;pv();if(ok)upd();else alert('لا يمكن إدخال الامتحان في صفحة واحدة حتى بخط 10. قلّل المحتوى أو الهوامش.')}
+function fitOne(){const o=S.s.size,m0=S.s.mode;if(m0=='a')S.s.mode='q';pv();const n0=EXN;
+ if(n0<=1){S.s.mode=m0;pv();alert('الامتحان في صفحة واحدة بالفعل.');return}
+ const tgt=n0-1;let sz=parseFloat(o)||13;
+ for(sz-=0.5;sz>=10;sz-=0.5){S.s.size=String(sz);pv();if(EXN<=tgt)break}
+ const ok=EXN<=tgt;if(!ok)S.s.size=o;S.s.mode=m0;pv();
+ if(ok)upd();else alert('لا يمكن إدخال الامتحان في '+(tgt==1?'صفحة واحدة':tgt==2?'صفحتين':tgt+' صفحات')+' حتى بخط 10. قلّل المحتوى أو الهوامش أو مسافة أعلى الترويسة.')}
 let _pv=null;
 addEventListener('beforeprint',()=>{_pv=document.body.dataset.v;if(_pv!='pv')document.body.dataset.v='pv';try{renderPages()}catch(e){}});
 addEventListener('afterprint',()=>{if(_pv&&_pv!='pv')document.body.dataset.v=_pv;_pv=null});
@@ -409,6 +428,11 @@ document.addEventListener('click',e=>{
  else if(a=='pickH'){const a2=hlib().find(z=>z.id==d.id),q=d.q===undefined?S.ex[d.e]:S.ex[d.e].q[d.q];if(a2){q.e=a2.t;q.c=a2.c;q.r='';for(const k of ['e','c','r']){const el=document.querySelector(`[data-e="${d.e}"]${d.q===undefined?':not([data-q])':`[data-q="${d.q}"]`}[data-k="${k}"]`);if(el)el.value=q[k]}upd()}}
  else if(a=='install'){if(DP){DP.prompt();DP.userChoice.finally(()=>{DP=null;$('#inst').style.display='none'})}}
  else if(a=='sigdel'){S.s.sigimg='';if(S.s.sig=='img')S.s.sig='text';ed();upd()}
+ else if(a=='svSave'){const nm=($('#svname').value||'').trim()||svName(),a2=getSaves();a2.unshift({id:svId(),name:nm,ts:Date.now(),data:snap()});if(putSaves(a2)){$('#svname').value='';renderSaves()}}
+ else if(a=='svOpen'){const e=getSaves().find(x=>x.id==d.id);if(e&&confirm('سيُستبدل الاختبار الحالي بهذه النسخة. إن أردت الاحتفاظ بالحالي فاحفظه أولاً. متابعة؟')){const keep={};Object.keys(S.s||{}).forEach(k=>{if(k=='sigimg'||/^p[ac]_[trbl]$/.test(k))keep[k]=S.s[k]});S=JSON.parse(JSON.stringify(e.data));S.s=Object.assign(S.s||{},keep);save();location.reload()}}
+ else if(a=='svUpd'){const a2=getSaves(),e=a2.find(x=>x.id==d.id);if(e&&confirm('استبدال النسخة المحفوظة بالاختبار الحالي؟')){e.data=snap();e.ts=Date.now();if(putSaves(a2))renderSaves()}}
+ else if(a=='svDel'){if(confirm('حذف هذه النسخة نهائياً؟')){putSaves(getSaves().filter(x=>x.id!=d.id));renderSaves()}}
+ else if(a=='svExp'){const a2=getSaves();if(!a2.length){alert('لا توجد نسخ لتصديرها.');return}const u=URL.createObjectURL(new Blob([JSON.stringify({app:'exam-maker',saves:a2})],{type:'application/json'})),l=document.createElement('a');l.href=u;l.download='exam-maker-saves.json';document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),2000)}
  else if(a=='fs'){let v=parseFloat(S.s.size)||13;v=Math.min(18,Math.max(10,v+(d.t=='+'?0.5:-0.5)));S.s.size=String(v);upd()}
  else if(a=='fit1')fitOne();
  else if(a=='openAdd'){const p=$('#addp');p.hidden=!p.hidden;if(!p.hidden)addUI()}
@@ -429,11 +453,11 @@ document.addEventListener('click',e=>{
  else if(a=='delEx'){if(confirm('حذف هذا التمرين؟')){S.ex.splice(d.e,1);ed();upd()}}
  else if(a=='addQ'){S.ex[d.e].q.push(newQ(d.y));ed();upd()}
  else if(a=='delQ'){S.ex[d.e].q.splice(d.q,1);ed();upd()}
- else if(a=='reset'){if(confirm('بدء ورقة جديدة؟ سيتم مسح الحالية.')){S=DEF();S.ex=[{t:'',p:'20',q:[]}];ed();upd()}}
+ else if(a=='reset'){if(confirm('بدء ورقة جديدة؟ ستُمسح الأسئلة، وتبقى الترويسة والتنسيق، ويُحفظ نسخة تلقائية من الحالية في «المحفوظات».')){autoSave();S.ex=[{t:'',p:'20',q:[]}];ed();upd()}}
 });
 addEventListener('resize',fit);
-const VT={'set-head':'إعدادات الترويسة','set-design':'تنسيق الصفحة'};let SY=0;
-function go(v,push=true){if(push&&document.body.dataset.v==v)return;document.querySelectorAll('.nav button[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v==v));if(document.body.dataset.v=='ed'&&v!='ed')SY=window.scrollY;document.body.dataset.v=v;const t=$('#stitle');if(t)t.textContent=VT[v]||'';if(v=='pv')pv();window.scrollTo(0,v=='ed'?SY:0);if(push&&v!='ed'){try{history.pushState({v},'')}catch(x){}}}
+const VT={'set-head':'إعدادات الترويسة','set-design':'تنسيق الصفحة','set-saves':'الاختبارات المحفوظة'};let SY=0;
+function go(v,push=true){if(push&&document.body.dataset.v==v)return;document.querySelectorAll('.nav button[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v==v));if(document.body.dataset.v=='ed'&&v!='ed')SY=window.scrollY;document.body.dataset.v=v;const t=$('#stitle');if(t)t.textContent=VT[v]||'';if(v=='pv')pv();if(v=='set-saves')renderSaves();window.scrollTo(0,v=='ed'?SY:0);if(push&&v!='ed'){try{history.pushState({v},'')}catch(x){}}}
 addEventListener('popstate',e=>go((e.state&&e.state.v)||'ed',false));
 try{history.replaceState({v:'ed'},'')}catch(x){}
 let LF=null,REC=null,LIS=false;
@@ -453,6 +477,18 @@ document.addEventListener('focusin',e=>{const t=e.target;if(t.matches&&t.matches
 $('#mic').addEventListener('pointerdown',e=>e.preventDefault());
 function loadSig(f){const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const m=600,k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*k));c.height=Math.max(1,Math.round(im.height*k));c.getContext('2d').drawImage(im,0,0,c.width,c.height);S.s.sigimg=c.toDataURL('image/png');if(S.s.sig!='img')S.s.sig='img';ed();upd()};im.onerror=()=>alert('تعذّر قراءة الصورة');im.src=r.result};r.readAsDataURL(f)}
 document.addEventListener('change',e=>{const t=e.target;if(t&&t.id=='sigfile'&&t.files&&t.files[0]){loadSig(t.files[0]);t.value=''}});
+const SVK='exam1_saves';
+const getSaves=()=>{try{const a=JSON.parse(localStorage.getItem(SVK));return Array.isArray(a)?a:[]}catch(e){return []}};
+function putSaves(a){try{localStorage.setItem(SVK,JSON.stringify(a));return true}catch(e){alert('تعذّر الحفظ: مساحة المتصفح ممتلئة. احذف بعض النسخ المحفوظة.');return false}}
+const snap=()=>{const d=JSON.parse(JSON.stringify(S));if(d.s)delete d.s.sigimg;return d};
+const svName=()=>{const h=S.h;return [h.subject||'اختبار',h.kind,h.level].filter(Boolean).join(' — ')+(h.date?' ('+h.date+')':'')};
+const svId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+function autoSave(){let a=getSaves();a.unshift({id:svId(),name:'(تلقائي) '+svName(),ts:Date.now(),data:snap()});let au=0;a=a.filter(e=>!String(e.name).startsWith('(تلقائي)')||++au<=10);putSaves(a)}
+function renderSaves(){const a=getSaves(),n=$('#svname');if(n&&!n.value)n.value=svName();
+ $('#svlist').innerHTML=a.length?a.map(e=>`<div class="svi"><b>${esc(e.name)}</b><small>${new Date(e.ts).toLocaleString('en-GB',{dateStyle:'short',timeStyle:'short'})}</small><div class="add"><button class="p" data-a="svOpen" data-id="${e.id}">فتح</button><button data-a="svUpd" data-id="${e.id}">استبدال بالحالي</button><button class="x" data-a="svDel" data-id="${e.id}">حذف</button></div></div>`).join(''):'<small style="color:var(--mut)">لا توجد نسخ محفوظة بعد.</small>'}
+document.addEventListener('change',e=>{const t=e.target;if(!t||t.id!='svfile'||!t.files||!t.files[0])return;const r=new FileReader();
+ r.onload=()=>{try{const j=JSON.parse(r.result),arr=Array.isArray(j)?j:j.saves;if(!Array.isArray(arr))throw 0;const ok=arr.filter(x=>x&&x.name&&x.data&&Array.isArray(x.data.ex)).map(x=>({id:svId(),name:String(x.name),ts:x.ts||Date.now(),data:x.data}));if(!ok.length)throw 0;if(putSaves(ok.concat(getSaves()))){renderSaves();alert('تم استيراد '+ok.length+' نسخة.')}}catch(x){alert('الملف غير صالح.')}};
+ r.readAsText(t.files[0]);t.value=''});
 let DP=null;
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e;$('#inst').style.display=''});
 addEventListener('appinstalled',()=>{$('#inst').style.display='none'});

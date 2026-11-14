@@ -152,6 +152,26 @@ body[data-v="set-saves"] #v-saves{display:flex;flex-direction:column;gap:12px}
 .pg small{display:block;color:var(--mut);margin:10px 0 5px;font-size:12px}.pbx{display:flex;flex-wrap:wrap;gap:6px}
 .pbx button{min-height:38px;padding:4px 12px;font-size:14px}
 .b-pv button{padding:6px 10px;font-size:13px;min-height:40px}
+.bar h1{margin:0;font-size:16px;line-height:1.3}
+.brand{display:flex;flex-direction:column;align-items:flex-start;gap:2px;margin-inline-end:auto;min-width:0}
+.brand .ver{margin:0;font-size:10px;padding:0 7px}
+.b-top{flex-wrap:nowrap}
+.ib{width:42px;min-height:42px;padding:0;flex:none}
+.nav{flex-wrap:nowrap}
+.nav .tb{flex:1;flex-direction:column;gap:3px;padding:6px 2px;font-size:12px;min-height:56px;line-height:1.2}
+body[data-v^="set"] .nav .tb[data-a="popen"]{display:none}
+body[data-v="pv"] .b-pv.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+body[data-v="pv"] .b-pv.fsb{display:grid;grid-template-columns:1fr auto auto auto;gap:8px;align-items:center}
+body[data-v="pv"] .b-pv.r3{justify-content:space-between}
+.b-pv.g3 button{padding:6px 4px;white-space:nowrap}
+.fsb button{width:44px;padding:0}
+.mvb button{width:38px;min-height:38px;padding:0;font-size:16px}
+.q .qh .x{width:38px;padding:0}
+.sec>label,.sec>.g,.sec>.add{margin-top:10px}
+.sec>.qh+*{margin-top:8px}
+.qh{min-height:40px}
+label{gap:5px}
+.q{margin-top:14px;padding-top:12px;gap:10px}
 @media print{.bk,.pop{display:none!important}}
 @media print{
  .sheet{zoom:1!important;width:auto;height:auto;padding:0;margin:0;box-shadow:none;background:none;break-after:page;page-break-after:always}
@@ -162,18 +182,22 @@ body[data-v="set-saves"] #v-saves{display:flex;flex-direction:column;gap:12px}
 </head>
 <body data-v="ed">
 <div class="bar">
- <div class="bg b-top"><h1>مولّد أوراق الامتحان <span class="ver">الإصدار 1.9.1</span></h1><button data-a="view" data-v="set-saves"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg> المحفوظات</button>
-  <button class="p" data-a="popen">+ إضافة</button>
-  <button id="inst" data-a="install" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg> تثبيت</button></div>
- <div class="bg b-nav nav">
-  <button class="p" data-a="view" data-v="pv"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> معاينة</button>
-  <button data-a="view" data-v="set-head"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg> الترويسة</button>
-  <button data-a="view" data-v="set-design"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg> التنسيق</button>
-  <span class="tot" id="tot"></span>
+ <div class="bg b-top">
+  <div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.10.0</span></div>
+  <button class="ib" data-a="view" data-v="set-saves" aria-label="المحفوظات" title="المحفوظات"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></button>
+  <button class="ib" id="inst" data-a="install" aria-label="تثبيت التطبيق" title="تثبيت التطبيق" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg></button>
+  <span class="tot"></span>
  </div>
- <div class="bg b-set"><button data-a="back"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> الأسئلة</button><b id="stitle"></b></div>
- <div class="bg b-pv"><button data-a="back"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> رجوع</button><button data-a="view" data-v="set-design"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg> التنسيق</button><span id="pgc" class="pgc"></span><button class="p" data-a="print" style="margin-inline-start:auto"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/></svg> طباعة</button></div>
- <div class="bg b-pv fsb"><select data-s="mode" aria-label="المعروض"><option value="q">ورقة الأسئلة</option><option value="a">نموذج الإجابة</option><option value="b">الاثنان معاً</option></select><button data-a="fs" data-t="-" aria-label="تصغير الخط">A−</button><b id="fsv" class="fsv"></b><button data-a="fs" data-t="+" aria-label="تكبير الخط">A+</button><button data-a="fit1">ملاءمة صفحة</button></div>
+ <div class="bg b-nav nav">
+  <button class="p tb" data-a="popen"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>إضافة</span></button>
+  <button class="tb" data-a="view" data-v="pv"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span>معاينة</span></button>
+  <button class="tb" data-a="view" data-v="set-head"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>الترويسة</span></button>
+  <button class="tb" data-a="view" data-v="set-design"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg><span>التنسيق</span></button>
+ </div>
+ <div class="bg b-set"><button data-a="back"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> الأسئلة</button><b id="stitle"></b><span class="tot"></span></div>
+ <div class="bg b-pv g3"><button data-a="back"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> رجوع</button><button data-a="view" data-v="set-design"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg> التنسيق</button><button class="p" data-a="print"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/></svg> طباعة</button></div>
+ <div class="bg b-pv fsb"><select data-s="mode" aria-label="المعروض"><option value="q">ورقة الأسئلة</option><option value="a">نموذج الإجابة</option><option value="b">الاثنان معاً</option></select><button data-a="fs" data-t="-" aria-label="تصغير الخط">A−</button><b id="fsv" class="fsv"></b><button data-a="fs" data-t="+" aria-label="تكبير الخط">A+</button></div>
+ <div class="bg b-pv r3"><span id="pgc" class="pgc"></span><button data-a="fit1">ملاءمة</button></div>
 </div>
 <div class="main">
  <div id="ed" class="view">
@@ -304,7 +328,7 @@ function hsearch(i,j){const sel=k=>document.querySelector(`[${k}][data-e="${i}"]
  const all=hlib().filter(ok),sh=all.slice(0,12);
  box.innerHTML=`<small style="color:var(--mut)">${toAr(all.length)} نتيجة${all.length>12?' (تظهر أول ١٢، أضف كلمات لتضييق البحث)':''}</small>`+sh.map(a=>`<div class="hit"><div>${esc(a.t.length>170?a.t.slice(0,170)+'…':a.t)}</div><small>${esc(a.c)} — ${esc(a.g)} — ${a.w} كلمة — رقم ${a.id}</small><button data-a="pickH" data-e="${i}"${j==null?'':` data-q="${j}"`} data-id="${a.id}">اختيار</button></div>`).join('')}
 function newQ(y){const nq={y,x:'',e:y=='essay'?'4':''};if(y=='sq'){nq.pt='1';nq.ln='2'}if(y=='qr'){Object.assign(nq,{su:'112',fa:'1',ta:'4',pre:''});fillQ(nq)}if(y=='tb')nq.g=[['العمود 1','العمود 2','العمود 3'],['','',''],['','','']];if(y=='match')nq.m=[['',''],['',''],['','']];return nq}
-const MV=i=>`<span class="mvb"><button data-a="mv" data-e="${i}" data-t="u" aria-label="أعلى">↑</button><button data-a="mv" data-e="${i}" data-t="d" aria-label="أسفل">↓</button><button class="x" data-a="delEx" data-e="${i}">حذف</button></span>`;
+const MV=i=>`<span class="mvb"><button data-a="mv" data-e="${i}" data-t="u" aria-label="أعلى">↑</button><button data-a="mv" data-e="${i}" data-t="d" aria-label="أسفل">↓</button><button class="x" data-a="delEx" data-e="${i}" aria-label="حذف">✕</button></span>`;
 const ptsOf=x=>(x.d==2||x.d==3)?(x.q||[]).reduce((a,q)=>a+(parseFloat(q.pt)||0),0):x.d?0:(parseFloat(x.p)||0);
 const qblock=(x,i)=>`${x.ht=='1'?`<div class="exh"><span>${exName(i)}</span><span>(${Math.round(ptsOf(x)*100)/100} ن)</span></div>`:''}${x.d==3?`<div class="hdb">${nl(x.e)}${(x.r||x.c)?`<div class="src">${x.r?'الراوي: '+esc(x.r):''}${x.r&&x.c?' — ':''}${x.c?'المصدر: '+esc(x.c):''}</div>`:''}</div>`:`<div class="qr">${x.pre?esc(x.pre)+' ':''}${esc(x.e)}${x.cap?`<div class="src">${esc(x.cap)}</div>`:''}</div>`}${(x.q||[]).map((q,j)=>qhtml(q,j+1)).join('')}`;
 const ahead='<div class="arow ah"><div>السؤال</div><div>الإجابة النموذجية</div><div>العلامة</div></div>';
@@ -408,11 +432,11 @@ function buildPages(mk){const host=$('#pages'),s=S.s,sheets=[];let cont,avail;
 let EXN=0;
 function renderPages(){const host=$('#pages');host.innerHTML='';const md=S.s.mode||'q';let n1=0,n2=0;
  if(md!='a')n1=buildPages(()=>mkAtoms(examHTML()));if(md!='q')n2=buildPages(()=>mkAtoms(ansHTML()));
- EXN=n1;const fb=document.querySelector('[data-a="fit1"]');if(fb){const t=n1-1;fb.textContent=n1>1?'ملاءمة في '+(t==1?'صفحة واحدة':t==2?'صفحتين':t+' صفحات'):'ملاءمة'}
- $('#pgc').textContent=md=='b'?`الأسئلة ${n1} · الإجابة ${n2}`:`الصفحات: ${n1||n2}`;fit()}
+ EXN=n1;const fb=document.querySelector('[data-a="fit1"]');if(fb){fb.style.display=n1>1?'':'none';const t=n1-1;fb.textContent=n1>1?'ملاءمة في '+(t==1?'صفحة واحدة':t==2?'صفحتين':t+' صفحات'):'ملاءمة'}
+ $('#pgc').textContent=md=='b'?`الأسئلة ${n1} · الإجابة ${n2}`:(n1||n2)==1?'الورقة في صفحة واحدة':`الصفحات: ${n1||n2}`;fit()}
 function pv(){
- const tot=Math.round(S.ex.reduce((a,x)=>a+ptsOf(x),0)*100)/100,t=$('#tot');
- t.textContent='المجموع: '+tot+' / 20';t.className='tot'+(tot==20?'':' bad');
+ const tot=Math.round(S.ex.reduce((a,x)=>a+ptsOf(x),0)*100)/100;
+ document.querySelectorAll('.tot').forEach(t=>{t.textContent=tot+' / 20';t.title='المجموع';t.className='tot'+(tot==20?'':' bad')});
  const fv=$('#fsv');if(fv)fv.textContent=S.s.size;applyPage();
  if(document.body.dataset.v=='pv'){try{renderPages()}catch(e){$('#pages').innerHTML='<div class="sec">تعذّر عرض المعاينة: '+esc(e.message)+'</div>'}}
 }

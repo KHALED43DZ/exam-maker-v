@@ -176,6 +176,7 @@ label{gap:5px}
 .brand h1{white-space:normal}
 .clr{flex-direction:row;align-items:center;gap:8px;font-size:13px;color:var(--ink)}.clr input{width:42px;min-height:36px;padding:2px;border-radius:8px;cursor:pointer}
 .bln{height:1.9em}
+.wn{color:var(--warn);font-weight:700;font-size:12px}
 @media print{.bk,.pop{display:none!important}}
 @media print{
  .sheet{zoom:1!important;width:auto;height:auto;padding:0;margin:0;box-shadow:none;background:none;break-after:page;page-break-after:always}
@@ -187,7 +188,7 @@ label{gap:5px}
 <body data-v="ed">
 <div class="bar">
  <div class="bg b-top">
-  <div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.12.0</span></div>
+  <div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.13.0</span></div>
   <button class="ib" data-a="view" data-v="set-saves" aria-label="المحفوظات" title="المحفوظات"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></button>
   <button class="p pgb" data-a="addpg">+ صفحة</button>
   <button class="ib" id="inst" data-a="install" aria-label="تثبيت التطبيق" title="تثبيت التطبيق" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg></button>
@@ -236,7 +237,6 @@ label{gap:5px}
     <label>خط الأسئلة<select data-s="qfont"><option value="">نفس خط الورقة</option><option value="Amiri">أميري</option><option value="Cairo">القاهرة</option><option value="Tajawal">تجوال</option><option value="Noto Naskh Arabic">نسخ</option><option value="Almarai">المراعي</option><option value="IBM Plex Sans Arabic">آي بي إم بلكس</option><option value="Noto Kufi Arabic">نوتو كوفي</option><option value="Scheherazade New">شهرزاد</option><option value="Lateef">لطيف</option><option value="Markazi Text">مركزي</option><option value="El Messiri">المسيري</option><option value="Reem Kufi">ريم كوفي</option><option value="Aref Ruqaa">عارف رقعة</option><option value="Mada">مدى</option></select></label>
     <label>خط عناوين الأسئلة والأجزاء<select data-s="tfont"><option value="">نفس خط الأسئلة</option><option value="Amiri">أميري</option><option value="Cairo">القاهرة</option><option value="Tajawal">تجوال</option><option value="Noto Naskh Arabic">نسخ</option><option value="Almarai">المراعي</option><option value="IBM Plex Sans Arabic">آي بي إم بلكس</option><option value="Noto Kufi Arabic">نوتو كوفي</option><option value="Scheherazade New">شهرزاد</option><option value="Lateef">لطيف</option><option value="Markazi Text">مركزي</option><option value="El Messiri">المسيري</option><option value="Reem Kufi">ريم كوفي</option><option value="Aref Ruqaa">عارف رقعة</option><option value="Mada">مدى</option></select></label>
     <label>علامة بداية السؤال<select data-s="qnum"><option value="dash">شرطة -</option><option value="num">رقم 1-</option></select></label>
-    <label>تسمية الأقسام<select data-s="lab"><option value="التمرين|m">التمرين الأول</option><option value="السؤال|m">السؤال الأول</option><option value="الوضعية|f">الوضعية الأولى</option><option value="المسألة|f">المسألة الأولى</option><option value="النشاط|m">النشاط الأول</option></select></label>
     <label>المسافة بين الإطار وأعلى الترويسة (مم)<input type="number" step="0.5" min="0" max="30" data-s="pt"></label>
     <label>حجم الخط<select data-s="size"><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option><option value="14.5">14.5</option><option value="15">15</option><option value="15.5">15.5</option><option value="16">16</option><option value="16.5">16.5</option><option value="17">17</option><option value="17.5">17.5</option><option value="18">18</option></select></label>
    </div>
@@ -278,9 +278,9 @@ label{gap:5px}
 <div id="addbk" class="bk" hidden></div>
 <div id="addpop" class="pop" hidden role="dialog" aria-label="إضافة">
  <label>الهدف (تُضاف إليه الأسئلة، وتُدرج العناصر الجديدة بعده)<select id="addto"></select></label>
- <div class="pg"><small>الهيكل</small><div class="pbx" id="pop-s"></div></div>
+ <div class="pg"><small>العناوين</small><div class="pbx" id="pop-s"></div></div>
  <div class="pg"><small>النصوص</small><div class="pbx" id="pop-t"></div></div>
- <div class="pg"><small>الأسئلة</small><div class="pbx" id="pop-q"></div></div>
+ <div class="pg"><small>الأسئلة الفرعية</small><div class="pbx" id="pop-q"></div></div>
  <div class="pg"><small>أسطر</small><div class="pbx" id="pop-l"></div></div>
 </div>
 <button id="mic" data-a="mic" type="button">🎤 إملاء صوتي</button>
@@ -299,6 +299,14 @@ ex:[{t:'',p:'6',q:[{y:'mcq',x:'عاصمة الجزائر هي:',e:'وهران\n�
 let S;try{S=JSON.parse(localStorage.getItem('exam1'))}catch(e){}
 if(!S||!S.ex)S=DEF();
 S.ex.forEach(x=>{if(x.d>=2&&!x.q)x.q=[]});
+(function(){const word=((S.s&&S.s.lab)||'التمرين|m').split('|')[0];let c=0;const out=[];
+ S.ex.forEach(x=>{
+  if(!x.d){c++;if(x.n==null){x.w=word;x.n=String(c)}out.push(x)}
+  else if(x.d==2||x.d==3){c++;
+   if(x.ht=='1'||x.ht=='2'){out.push({w:word,n:String(c),t:'',p:'',q:[]});if(x.ht=='2'&&String(x.ins||'').trim()){x.q=x.q||[];x.q.unshift({y:'sq',x:x.ins,up:'1',pt:'',ln:'0'})}}
+   delete x.ht;delete x.ins;out.push(x)}
+  else out.push(x)});
+ S.ex=out})();
 S.h=S.h||{};S.h.date=S.h.date||'';S.h.datetxt=S.h.datetxt||'';S.h.hadj=S.h.hadj||'0';S.h.gm=S.h.gm||'dz';
 const lat=s=>String(s==null?'':s).replace(/[٠-٩]/g,c=>'٠١٢٣٤٥٦٧٨٩'.indexOf(c));
 S.ex.forEach(x=>{if(x.d==2){x.e=lat(x.e);x.cap=lat(x.cap)}(x.q||[]).forEach(q=>{if(q.y=='qr'){q.e=lat(q.e);q.cap=lat(q.cap)}})});
@@ -335,36 +343,69 @@ function hsearch(i,j){const sel=k=>document.querySelector(`[${k}][data-e="${i}"]
  box.innerHTML=`<small style="color:var(--mut)">${toAr(all.length)} نتيجة${all.length>12?' (تظهر أول ١٢، أضف كلمات لتضييق البحث)':''}</small>`+sh.map(a=>`<div class="hit"><div>${esc(a.t.length>170?a.t.slice(0,170)+'…':a.t)}</div><small>${esc(a.c)} — ${esc(a.g)} — ${a.w} كلمة — رقم ${a.id}</small><button data-a="pickH" data-e="${i}"${j==null?'':` data-q="${j}"`} data-id="${a.id}">اختيار</button></div>`).join('')}
 function newQ(y){const nq={y,x:'',e:y=='essay'?'4':''};if(y=='dl'||y=='bl')nq.n='1';if(y=='sq'){nq.pt='1';nq.ln='2'}if(y=='qr'){Object.assign(nq,{su:'112',fa:'1',ta:'4',pre:''});fillQ(nq)}if(y=='tb')nq.g=[['العمود 1','العمود 2','العمود 3'],['','',''],['','','']];if(y=='match')nq.m=[['',''],['',''],['','']];return nq}
 const MV=i=>`<span class="mvb"><button data-a="mv" data-e="${i}" data-t="u" aria-label="أعلى">↑</button><button data-a="mv" data-e="${i}" data-t="d" aria-label="أسفل">↓</button><button class="x" data-a="delEx" data-e="${i}" aria-label="حذف">✕</button></span>`;
-const ptsOf=x=>(x.d==2||x.d==3)?(x.q||[]).reduce((a,q)=>a+(parseFloat(q.pt)||0),0):x.d?0:(parseFloat(x.p)||0);
-const qblock=(x,i)=>`${x.ht=='1'||x.ht=='2'?`<div class="exh"><span>${exName(i)}</span><span>(${Math.round(ptsOf(x)*100)/100} ن)</span></div>`:''}${x.ht=='2'&&String(x.ins||'').trim()?`<div class="qq ins">${nl(x.ins)}</div>`:''}${x.d==3?`<div class="hdb">${nl(x.e)}${(x.r||x.c)?`<div class="src">${x.r?'الراوي: '+esc(x.r):''}${x.r&&x.c?' — ':''}${x.c?'المصدر: '+esc(x.c):''}</div>`:''}</div>`:`<div class="qr">${x.pre?esc(x.pre)+' ':''}${esc(x.e)}${x.cap?`<div class="src">${esc(x.cap)}</div>`:''}</div>`}${qlist(x.q)}`;
+const ptsOf_old=x=>(x.d==2||x.d==3)?(x.q||[]).reduce((a,q)=>a+(parseFloat(q.pt)||0),0):x.d?0:(parseFloat(x.p)||0);
+const ptsOf=x=>own(x);
+const linesHtml=q=>{const k=Math.min(30,Math.max(0,parseInt(q.ln)||0));return k&&q.y!='essay'?'<div class="qq lns">'+'<div class="ln"></div>'.repeat(k)+'</div>':''};
+const qblock=(x,i)=>{const a=x.q||[],up=a.filter(q=>q.up=='1'),dn=a.filter(q=>q.up!='1');let k=0;
+ const num=q=>isLine(q)?0:isIns(q)?-1:++k;
+ const box=x.d==3?`<div class="hdb">${nl(x.e)}${(x.r||x.c)?`<div class="src">${x.r?'الراوي: '+esc(x.r):''}${x.r&&x.c?' — ':''}${x.c?'المصدر: '+esc(x.c):''}</div>`:''}</div>`:`<div class="qr">${x.pre?esc(x.pre)+' ':''}${esc(x.e)}${x.cap?`<div class="src">${esc(x.cap)}</div>`:''}</div>`;
+ const upH=up.map(q=>{const n=num(q);return n==-1?`<div class="qq ins">${nl(q.x)}</div>`:qhtml(q,n,true).replace('class="qq','class="qq ins')}).join('');
+ const upL=up.map(linesHtml).join('');
+ const dnH=dn.map(q=>isLine(q)?qhtml(q,0):qhtml(q,num(q))).join('');
+ return upH+box+upL+dnH};
 const ansColor=()=>/^#[0-9a-f]{6}$/i.test(S.s.ansclr||'')?S.s.ansclr:'#000000';
 const ahead='<div class="arow ah"><div>السؤال</div><div>الإجابة النموذجية</div><div>العلامة</div></div>';
 const arows=qs=>(qs||[]).filter(q=>!isLine(q)).map((q,j)=>`<div class="arow"><div>${esc(qlab(q,j+1))}</div><div style="color:${ansColor()}">${ansOf(q)}</div><div>${q.pt?esc(q.pt):''}</div></div>`).join('')||'<div class="arow"><div>&nbsp;</div><div></div><div></div></div>';
-const ablock=(x,i)=>{const qs=(x.q||[]).filter(q=>!isLine(q));if(!qs.length)return '';const p=Math.round(ptsOf(x)*100)/100;
- return `<div class="exh"><span>${exName(i)}: ${x.d==3?'نص الحديث':x.cap?esc(x.cap.split(' — ')[0]):'نص السورة'}</span><span>(${p} ن)</span></div>${ahead}${arows(qs)}`};
+const arowN=(q,n)=>`<div class="arow"><div>${esc(qlab(q,n))}</div><div style="color:${ansColor()}">${ansOf(q)}</div><div>${q.pt?esc(q.pt):''}</div></div>`;
+const ablock=(x,i)=>{const L=bqOrder(x.q);let k=0;const rows=[];
+ L.forEach(q=>{if(isLine(q))return;if(isIns(q))return;k++;rows.push(arowN(q,k))});
+ if(!rows.length)return '';
+ return `<div class="exh"><span>${x.d==3?'نص الحديث':x.cap?esc(x.cap.split(' — ')[0]):'نص السورة'}</span><span>${cnt(rd2(ptsOf(x)))}</span></div>${ahead}${rows.join('')}`};
 const BQ=(i,x)=>(x.q||[]).map((q,j)=>QED(i,j,q)).join('')+`<div class="add"><button data-a="popen" data-e="${i}">+ سؤال هنا</button></div>`;
-const HT=(i,x)=>`<label>عنوان الترقيم فوق النص<select data-e="${i}" data-k="ht"><option value="">بدون</option><option value="1"${x.ht=='1'?' selected':''}>إظهار (مثل «التمرين الأول»)</option><option value="2"${x.ht=='2'?' selected':''}>إظهار مثل «التمرين الأول» مع تعليمة</option></select></label>${x.ht=='2'?`<label>التعليمة (تظهر تحت عنوان التمرين)<textarea data-e="${i}" data-k="ins">${esc(x.ins)}</textarea></label>`:''}`;
-const HB=(i,x)=>`<div class="sec" style="margin-bottom:12px"><div class="qh"><span>📜 حديث نبوي <span class="badge">${exName(i)}</span></span>${MV(i)}</div>${HD(i,null,x)}${HT(i,x)}${BQ(i,x)}</div>`;
+const HB=(i,x)=>`<div class="sec" style="margin-bottom:12px"><div class="qh"><span>📜 حديث نبوي</span>${MV(i)}</div>${HD(i,null,x)}${BQ(i,x)}</div>`;
 function QB(i,x){const at=`data-e="${i}"`,so=(v)=>`<option value="${v}"${x.pre==v?' selected':''}>${v||'بدون'}</option>`;
- return `<div class="sec" style="margin-bottom:12px"><div class="qh"><span>📖 سورة قرآنية <span class="badge">${exName(i)}</span></span>${MV(i)}</div><label>السورة<select ${at} data-k="su">${W.n.map((n,k)=>`<option value="${k+1}"${k+1==x.su?' selected':''}>${k+1}. ${esc(n)}</option>`).join('')}</select></label><div class="g"><label>من الآية<input type="number" min="1" ${at} data-k="fa" value="${esc(x.fa)}"></label><label>إلى الآية<input type="number" min="1" ${at} data-k="ta" value="${esc(x.ta)}"></label></div><label>عبارة قبل الآية<select ${at} data-k="pre">${so('')}${so('قال الله تعالى:')}${so('قال تعالى:')}</select></label><label>المصدر تحت النص<input ${at} data-k="cap" value="${esc(x.cap)}"></label><label>النص (يمكن تعديله)<textarea ${at} data-k="e">${esc(x.e)}</textarea></label>${HT(i,x)}${BQ(i,x)}</div>`}
+ return `<div class="sec" style="margin-bottom:12px"><div class="qh"><span>📖 سورة قرآنية</span>${MV(i)}</div><label>السورة<select ${at} data-k="su">${W.n.map((n,k)=>`<option value="${k+1}"${k+1==x.su?' selected':''}>${k+1}. ${esc(n)}</option>`).join('')}</select></label><div class="g"><label>من الآية<input type="number" min="1" ${at} data-k="fa" value="${esc(x.fa)}"></label><label>إلى الآية<input type="number" min="1" ${at} data-k="ta" value="${esc(x.ta)}"></label></div><label>عبارة قبل الآية<select ${at} data-k="pre">${so('')}${so('قال الله تعالى:')}${so('قال تعالى:')}</select></label><label>المصدر تحت النص<input ${at} data-k="cap" value="${esc(x.cap)}"></label><label>النص (يمكن تعديله)<textarea ${at} data-k="e">${esc(x.e)}</textarea></label>${BQ(i,x)}</div>`}
 function HD(i,j,q){const at=`data-e="${i}"`+(j==null?'':` data-q="${j}"`);
  return `<div class="sec" style="padding:8px"><label>ابحث في مكتبة الأحاديث (كلمة من الحديث أو رقمه)<input ${at} data-hs placeholder="مثال: النيات"></label><label>اقتراح حسب الطور (حسب طول الحديث فقط)<select ${at} data-hl><option value="">كل الأحاديث</option><option value="1">ابتدائي (قصيرة)</option><option value="2">متوسط</option><option value="3">ثانوي (أطول)</option></select></label><div class="hres" id="hr-${i}-${j==null?'b':j}"></div></div>`+`<label>نص الحديث<textarea ${at} data-k="e">${esc(q.e)}</textarea></label><div class="g"><label>الراوي<input ${at} data-k="r" value="${esc(q.r)}"></label><label>المخرّج / المصدر<input ${at} data-k="c" value="${esc(q.c)}"></label></div>`}
-const QED0=(i,j,q)=>`<div class="q"><div class="qh"><span>${qnum(i,j)}. <span class="badge">${T[q.y]||'سؤال'}</span></span><button class="x" data-a="delQ" data-e="${i}" data-q="${j}">✕</button></div>
- <label>${(q.y=='sit'||q.y=='qr'||q.y=='hd')?'التعليمات (مثل: اشرح، استخرج، أعرب...)':q.y=='fill'?'النص (اكتب ___ مكان الفراغ)':'نص السؤال'}<textarea data-e="${i}" data-q="${j}" data-k="x">${esc(q.x)}</textarea></label>
+const QED0=(i,j,q)=>`<div class="q"><div class="qh"><span>${qnumTxt(i,j)} <span class="badge">${T[q.y]||'سؤال'}</span></span><button class="x" data-a="delQ" data-e="${i}" data-q="${j}">✕</button></div>
+ <label>${(q.y=='sit'||q.y=='qr'||q.y=='hd')?'التعليمات (مثل: اشرح، استخرج، أعرب...)':q.y=='fill'?'النص (اكتب ___ مكان الفراغ)':'نص السؤال'}<textarea data-e="${i}" data-q="${j}" data-k="x">${esc(q.x)}</textarea></label>${inBlock(i)?`<label>موضع السؤال<select data-e="${i}" data-q="${j}" data-k="up"><option value=""${q.up=='1'?'':' selected'}>تحت الآية / الحديث</option><option value="1"${q.up=='1'?' selected':''}>فوق الآية / الحديث (تعليمة إن لم تضع نقطة)</option></select></label>`:''}
  ${q.y=='mcq'?`<label>الاقتراحات (سطر لكل اقتراح)<textarea data-e="${i}" data-q="${j}" data-k="e">${esc(q.e)}</textarea></label>`:''}
  ${q.y=='match'?MT(i,j,q):''}
  ${q.y=='sit'?`<label>السند (نص أو معطيات)<textarea data-e="${i}" data-q="${j}" data-k="e">${esc(q.e)}</textarea></label>`:''}
  ${q.y=='essay'?`<label>عدد الأسطر<input type="number" min="1" max="20" data-e="${i}" data-q="${j}" data-k="e" value="${esc(q.e||4)}"></label>`:''}${q.y=='qr'?QR(i,j,q):''}${q.y=='hd'?HD(i,j,q):''}${q.y=='tb'?TB(i,j,q):''}<div class="g"><label>علامة السؤال<input type="number" step="0.25" min="0" data-e="${i}" data-q="${j}" data-k="pt" value="${esc(q.pt)}"></label>${q.y!='essay'?`<label>أسطر الإجابة على الورقة<input type="number" min="0" max="30" data-e="${i}" data-q="${j}" data-k="ln" value="${esc(q.ln||0)}"></label>`:''}</div><details${q.ans?' open':''}><summary style="cursor:pointer;color:var(--ac);font-size:13px">الإجابة النموذجية</summary><label>تظهر في ورقة الإجابة فقط<textarea data-e="${i}" data-q="${j}" data-k="ans">${esc(q.ans)}</textarea></label></details></div>`;
 const isLine=q=>q.y=='dl'||q.y=='bl';
+const WORDS=['التمرين','السؤال','الوضعية','المسألة','النشاط'],FEMW=['الوضعية','المسألة'];
+const ORDM=['الأول','الثاني','الثالث','الرابع','الخامس','السادس','السابع','الثامن','التاسع','العاشر'],ORDF2=['الأولى','الثانية','الثالثة','الرابعة','الخامسة','السادسة','السابعة','الثامنة','التاسعة','العاشرة'];
+const ordTxt=(w,n)=>{if(!n)return '';const a=FEMW.includes(w)?ORDF2:ORDM;return a[(parseInt(n)||0)-1]||String(n)};
+const hLabel=x=>(x.w||'التمرين')+(x.n?' '+ordTxt(x.w,x.n):'');
+const partLabel=x=>x.n?'الجزء '+ordTxt('الجزء',x.n)+(x.t&&String(x.t).trim()?': '+x.t:''):(x.t||'');
+const rd2=n=>Math.round(n*100)/100;
+const qpts=a=>(a||[]).reduce((s,q)=>s+(parseFloat(q.pt)||0),0);
+const own=x=>(x.d==2||x.d==3)?qpts(x.q):x.d?0:(qpts(x.q)||parseFloat(x.p)||0);
+const grp=i=>{const x=S.ex[i];let s=0;
+ if(x.d==1){for(let j=i+1;j<S.ex.length&&S.ex[j].d!=1;j++)s+=own(S.ex[j]);return rd2(s)}
+ s=own(x);for(let j=i+1;j<S.ex.length;j++){const y=S.ex[j];if(y.d==1||!y.d)break;if(y.d==2||y.d==3)s+=own(y)}return rd2(s)};
+const cnt=n=>n>0?`(${n} ن)`:'';
+const partHTML=(x,i)=>{const c=cnt(grp(i));return `<div class="dv"><span>${esc(partLabel(x))}${c?' '+c:''}</span></div>`};
+const dupHead=i=>{const x=S.ex[i];return !!x.n&&S.ex.some((y,j)=>j!=i&&(x.d==1?y.d==1:(!y.d&&y.w==x.w))&&y.n==x.n)};
+const inBlock=i=>S.ex[i]&&(S.ex[i].d==2||S.ex[i].d==3);
+const isIns=q=>!isLine(q)&&q.up=='1'&&!(parseFloat(q.pt)>0);
+const bqOrder=a=>{const L=(a||[]);return L.filter(q=>q.up=='1').concat(L.filter(q=>q.up!='1'))};
+function nextOrd(w,at){for(let j=at-1;j>=0;j--){const x=S.ex[j];if(w=='الجزء'){if(x.d==1&&x.n)return String((parseInt(x.n)||0)+1)}else if(!x.d&&x.w==w&&x.n)return String((parseInt(x.n)||0)+1)}return '1'}
 const qnum=(i,j)=>{const a=(S.ex[i]&&S.ex[i].q)||[];let n=0;for(let k=0;k<=j&&k<a.length;k++)if(!isLine(a[k]))n++;return n};
+const qnumTxt=(i,j)=>{const x=S.ex[i],a=(x&&x.q)||[];if(!inBlock(i))return qnum(i,j)+'.';
+ const idx=a.map((q,k)=>k),order=idx.filter(k=>a[k].up=='1').concat(idx.filter(k=>a[k].up!='1'));let n=0;
+ for(const k of order){const q=a[k],ins=isIns(q);if(!isLine(q)&&!ins)n++;if(k==j)return ins?'تعليمة':isLine(q)?'':n+'.'}return ''};
 const QL=(i,j,q)=>`<div class="q"><div class="qh"><span><span class="badge">${T[q.y]}</span></span><button class="x" data-a="delQ" data-e="${i}" data-q="${j}" aria-label="حذف">✕</button></div><label>عدد الأسطر<input type="number" min="1" max="30" data-e="${i}" data-q="${j}" data-k="n" value="${esc(q.n||1)}"></label></div>`;
 const QED=(i,j,q)=>isLine(q)?QL(i,j,q):QED0(i,j,q);
 function qlist(a){let k=0;return (a||[]).map(q=>isLine(q)?qhtml(q,0):qhtml(q,++k)).join('')}
-const EX=(i,x)=>`<div class="sec" style="margin-bottom:12px"><div class="qh"><span>${exName(i)}</span>${MV(i)}</div>
- <div class="g" style="margin-top:8px"><label>العنوان (اختياري)<input data-e="${i}" data-k="t" value="${esc(x.t)}"></label><label>النقطة<input type="number" step="0.25" data-e="${i}" data-k="p" value="${esc(x.p)}"></label></div>
+const ordOpts=(w,n)=>'<option value="">بدون رقم</option>'+Array.from({length:10},(_,k)=>`<option value="${k+1}"${String(n)==String(k+1)?' selected':''}>${ordTxt(w,k+1)}</option>`).join('');
+const EX=(i,x)=>`<div class="sec" style="margin-bottom:12px"><div class="qh"><span>${esc(hLabel(x))}${grp(i)>0?` <span class="badge">${grp(i)} ن</span>`:''}${dupHead(i)?' <span class="wn" title="الرقم مكرر">⚠ مكرر</span>':''}</span>${MV(i)}</div>
+ <div class="g" style="margin-top:8px"><label>نوع العنوان<select data-e="${i}" data-k="w">${WORDS.map(w=>`<option${(x.w||'التمرين')==w?' selected':''}>${w}</option>`).join('')}</select></label><label>الترتيب (يدوي)<select data-e="${i}" data-k="n">${ordOpts(x.w||'التمرين',x.n)}</select></label></div>
+ <div class="g" style="margin-top:8px"><label>عنوان إضافي (اختياري)<input data-e="${i}" data-k="t" value="${esc(x.t)}"></label><label>نقطة يدوية (إن لم تضع نقاطاً للأسئلة)<input type="number" step="0.25" data-e="${i}" data-k="p" value="${esc(x.p)}"></label></div>
  ${x.q.map((q,j)=>QED(i,j,q)).join('')}
  <div class="add"><button data-a="popen" data-e="${i}">+ سؤال هنا</button></div></div>`;
-const DV=(i,x)=>`<div class="sec" style="margin-bottom:12px"><div class="qh"><span>فاصل</span>${MV(i)}</div><label>نص الفاصل<input data-e="${i}" data-k="t" value="${esc(x.t)}"></label></div>`;
+const DV=(i,x)=>`<div class="sec" style="margin-bottom:12px"><div class="qh"><span>الجزء${x.n?' '+esc(ordTxt('الجزء',x.n)):''}${grp(i)>0?` <span class="badge">${grp(i)} ن</span>`:''}${dupHead(i)?' <span class="wn" title="الرقم مكرر">⚠ مكرر</span>':''}</span>${MV(i)}</div><div class="g" style="margin-top:8px"><label>الترتيب (يدوي)<select data-e="${i}" data-k="n">${ordOpts('الجزء',x.n)}</select></label><label>عنوان إضافي${x.n?' (اختياري)':' / النص الكامل'}<input data-e="${i}" data-k="t" value="${esc(x.t)}"></label></div></div>`;
 const PB=i=>`<div class="sec" style="margin-bottom:12px"><div class="qh"><span>صفحة جديدة (فاصل صفحة)</span>${MV(i)}</div></div>`;
 function ed(){
  const sg=$('#sigst');if(sg)sg.textContent=S.s.sigimg?'✔ صورة محفوظة':'';
@@ -373,7 +414,7 @@ function ed(){
  $('#exs').innerHTML=S.ex.map((x,i)=>x.d==2?QB(i,x):x.d==3?HB(i,x):x.d==4?PB(i):x.d?DV(i,x):EX(i,x)).join('');
 }
 
-function qhtml(q,n){if(q.y=='dl'||q.y=='bl'){const c=Math.min(30,Math.max(1,parseInt(q.n)||1));return '<div class="qq lns">'+(q.y=='dl'?'<div class="ln"></div>':'<div class="bln"></div>').repeat(c)+'</div>'}const o0=qhtml0(q,n),pt=parseFloat(q.pt)||0,o=pt>0?o0.replace('<div class="qq">',`<div class="qq hp"><span class="pt">(${pt} ن)</span>`):o0,k=Math.min(30,Math.max(0,+q.ln||0));return o+(q.y!='essay'&&k?'<div class="qq lns">'+'<div class="ln"></div>'.repeat(k)+'</div>':'')}
+function qhtml(q,n,nol){if(q.y=='dl'||q.y=='bl'){const c=Math.min(30,Math.max(1,parseInt(q.n)||1));return '<div class="qq lns">'+(q.y=='dl'?'<div class="ln"></div>':'<div class="bln"></div>').repeat(c)+'</div>'}const o0=qhtml0(q,n),pt=parseFloat(q.pt)||0,o=pt>0?o0.replace('<div class="qq">',`<div class="qq hp"><span class="pt">(${pt} ن)</span>`):o0,k=Math.min(30,Math.max(0,+q.ln||0));return o+(q.y!='essay'&&k&&!nol?'<div class="qq lns">'+'<div class="ln"></div>'.repeat(k)+'</div>':'')}
 const parseG=e=>String(e||'').split('\n').filter(l=>l.trim()||l.includes('|')).map(l=>l.split('|').map(s=>s.trim()));
 const gOf=q=>{if(!q.g){const g=parseG(q.e),c=Math.max(3,...g.map(r=>r.length));q.g=g.length?g.map(r=>Array.from({length:c},(_,k)=>r[k]||'')):[['العمود 1','العمود 2','العمود 3'],['','',''],['','','']]}return q.g};
 const mOf=q=>{if(!q.m){q.m=lines(q.e).map(l=>{const a=l.split('|').map(s=>s.trim());return [a[0]||'',a[1]||'']});if(!q.m.length)q.m=[['',''],['','']]}return q.m};
@@ -396,9 +437,9 @@ function qhtml0(q,n){
 const qlab=(q,n)=>{let s=(q.x||q.cap||T[q.y]||'').replace(/\s+/g,' ').trim();if(s.length>46)s=s.slice(0,46)+'…';return n+') '+s};
 const ansOf=q=>q.ans?nl(q.ans):(q.y=='match'?mOf(q).map(r=>esc(r[0])+' ↔ '+esc(r[1])).join('<br>'):'&nbsp;');
 function ansHTML(){const h=S.h,dl=dateLine();let tot=0;
- const rows=S.ex.map((x,i)=>{if(x.d==2||x.d==3){tot+=ptsOf(x);return ablock(x,i)}if(x.d==4)return '';if(x.d)return `<div class="dv"><span>${esc(x.t)}</span></div>`;
-  const p=parseFloat(x.p)||0;tot+=p;const qs=x.q.reduce((a,q)=>a+(parseFloat(q.pt)||0),0),warn=qs>0&&Math.abs(qs-p)>1e-9?`<span class="aw"> (تنبيه: مجموع نقاط الأسئلة ${qs})</span>`:'';
-  return `<div class="exh"><span>${exName(i)}${x.t?': '+esc(x.t):''}</span><span>(${esc(x.p||0)} ن)${warn}</span></div>${ahead}${arows(x.q)}`}).join('');
+ const rows=S.ex.map((x,i)=>{if(x.d==2||x.d==3){tot+=ptsOf(x);return ablock(x,i)}if(x.d==4)return '';if(x.d)return partHTML(x,i);
+  tot+=own(x);
+  return `<div class="exh"><span>${hLabel(x)}${x.t?': '+esc(x.t):''}</span><span>${cnt(grp(i))}</span></div>${ahead}${arows(x.q)}`}).join('');
  return `<div class="ttl">نموذج الإجابة وسلم التنقيط<br><span style="font-weight:400;font-size:.9em">${esc(h.kind)} في مادة ${esc(h.subject)} — ${esc(h.level)}${h.branch?' — '+esc(h.branch):''} — ${esc(h.year)}</span></div>${dl?`<div class="dt">${esc(dl)}</div>`:''}${rows}<div class="end">المجموع: ${Math.round(tot*100)/100} / 20</div>`}
 function pageMargins(){const m=/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent)?'pa':'pc';return ['t','r','b','l'].map(k=>{const v=parseFloat(S.s[m+'_'+k]);return isNaN(v)?5:Math.min(30,Math.max(0,v))})}
 function applyPage(){const [t,r,b,l]=pageMargins();let st=document.getElementById('pgs');if(!st){st=document.createElement('style');st.id='pgs';document.head.appendChild(st)}
@@ -422,7 +463,7 @@ function examHTML(){const h=S.h,dl=dateLine();
  <div class="inf"><div><span>مديرية التربية لولاية: ${esc(h.dir)||'..........'}</span><span>المؤسسة: ${esc(h.school)||'..........'}</span><span>المستوى: ${esc(h.level)}</span></div><div style="text-align:left"><span>السنة الدراسية: ${esc(h.year)}</span><span>المدة: ${esc(h.dur)}</span>${h.branch?`<span>الشعبة: ${esc(h.branch)}</span>`:''}</div></div>
  <div class="ttl">${esc(h.kind)} في مادة ${esc(h.subject)}</div>${dl?`<div class="dt">${esc(dl)}</div>`:''}
  <div class="stu"><span>الاسم واللقب: ....................................</span><span>القسم: ..........</span><span>النقطة: <i class="pb"><b>/ 20</b></i></span></div>
- ${S.ex.map((x,i)=>x.d==2||x.d==3?qblock(x,i):x.d==4?'<div class="pgbrk"></div>':x.d?`<div class="dv"><span>${esc(x.t)}</span></div>`:`<div class="exh"><span>${exName(i)}${x.t?': '+esc(x.t):''}</span><span>(${esc(x.p||0)} ن)</span></div>${qlist(x.q)}`).join('')}
+ ${S.ex.map((x,i)=>x.d==2||x.d==3?qblock(x,i):x.d==4?'<div class="pgbrk"></div>':x.d?partHTML(x,i):`<div class="exh"><span>${hLabel(x)}${x.t?': '+esc(x.t):''}</span><span>${cnt(grp(i))}</span></div>${qlist(x.q)}`).join('')}
  ${footHTML()}`}
 function mkAtoms(html){const t=document.createElement('div');t.innerHTML=html;const out=[];
  [...t.children].forEach(el=>{const c=el.classList;if(c.contains('pgbrk')){out.push({els:[],brk:true,kn:false});return}if(c.contains('lns')&&out.length){out[out.length-1].els.push(el);return}
@@ -469,7 +510,7 @@ document.addEventListener('input',e=>{
  if('gr' in d){gOf(S.ex[d.e].q[d.q])[d.gr][d.gc]=t.value;upd();return}
  if('mr' in d){mOf(S.ex[d.e].q[d.q])[d.mr][d.mc]=t.value;upd();return}
  if(d.h)S.h[d.h]=t.value;else if(d.s)S.s[d.s]=t.value;
- else if(d.k){const x=S.ex[d.e];if(d.q!==undefined){const q=x.q[d.q];q[d.k]=t.value;if(['su','fa','ta'].includes(d.k)){fillQ(q);for(const k of ['e','cap']){const el=document.querySelector(`[data-e="${d.e}"][data-q="${d.q}"][data-k="${k}"]`);if(el)el.value=q[k]}}}else{x[d.k]=t.value;if(d.k=='ht'){ed();upd();return}if(x.d==2&&['su','fa','ta'].includes(d.k)){fillQ(x);for(const k of ['e','cap']){const el=document.querySelector(`[data-e="${d.e}"][data-k="${k}"]:not([data-q])`);if(el)el.value=x[k]}}}}
+ else if(d.k){const x=S.ex[d.e];if(d.q!==undefined){const q=x.q[d.q];q[d.k]=t.value;if(['su','fa','ta'].includes(d.k)){fillQ(q);for(const k of ['e','cap']){const el=document.querySelector(`[data-e="${d.e}"][data-q="${d.q}"][data-k="${k}"]`);if(el)el.value=q[k]}}}else{x[d.k]=t.value;if(d.k=='w'){ed();upd();return}if(x.d==2&&['su','fa','ta'].includes(d.k)){fillQ(x);for(const k of ['e','cap']){const el=document.querySelector(`[data-e="${d.e}"][data-k="${k}"]:not([data-q])`);if(el)el.value=x[k]}}}}
  else return;upd();
 });
 document.addEventListener('click',e=>{
@@ -488,7 +529,7 @@ document.addEventListener('click',e=>{
  else if(a=='svExp'){const a2=getSaves();if(!a2.length){alert('لا توجد نسخ لتصديرها.');return}const u=URL.createObjectURL(new Blob([JSON.stringify({app:'exam-maker',saves:a2})],{type:'application/json'})),l=document.createElement('a');l.href=u;l.download='exam-maker-saves.json';document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),2000)}
  else if(a=='addpg')addPage()
  else if(a=='popen')openPop(d.e)
- else if(a=='padd')popAdd(d.k,d.y)
+ else if(a=='padd')popAdd(d.k,d.y,d.w)
  else if(a=='fs'){let v=parseFloat(S.s.size)||13;v=Math.min(18,Math.max(10,v+(d.t=='+'?0.5:-0.5)));S.s.size=String(v);upd()}
  else if(a=='fit1')fitOne();
  else if(a=='gAdd'){const q=S.ex[d.e].q[d.q],t=d.t;
@@ -498,7 +539,7 @@ document.addEventListener('click',e=>{
  else if(a=='mv'){const i=+d.e,j=d.t=='u'?i-1:i+1;if(j>=0&&j<S.ex.length){[S.ex[i],S.ex[j]]=[S.ex[j],S.ex[i]];ed();upd()}}
  else if(a=='delEx'){if(confirm('حذف هذا التمرين؟')){S.ex.splice(d.e,1);ed();upd()}}
  else if(a=='delQ'){S.ex[d.e].q.splice(d.q,1);ed();upd()}
- else if(a=='reset'){if(confirm('بدء ورقة جديدة؟ ستُمسح الأسئلة، وتبقى الترويسة والتنسيق، ويُحفظ نسخة تلقائية من الحالية في «المحفوظات».')){autoSave();S.ex=[{t:'',p:'20',q:[]}];ed();upd()}}
+ else if(a=='reset'){if(confirm('بدء ورقة جديدة؟ ستُمسح الأسئلة، وتبقى الترويسة والتنسيق، ويُحفظ نسخة تلقائية من الحالية في «المحفوظات».')){autoSave();S.ex=[{w:'التمرين',n:'1',t:'',p:'',q:[]}];ed();upd()}}
 });
 addEventListener('resize',fit);
 const VT={'set-head':'إعدادات الترويسة','set-design':'تنسيق الصفحة','set-saves':'الاختبارات المحفوظة'};let SY=0;
@@ -535,12 +576,12 @@ document.addEventListener('change',e=>{const t=e.target;if(!t||t.id!='svfile'||!
  r.onload=()=>{try{const j=JSON.parse(r.result),arr=Array.isArray(j)?j:j.saves;if(!Array.isArray(arr))throw 0;const ok=arr.filter(x=>x&&x.name&&x.data&&Array.isArray(x.data.ex)).map(x=>({id:svId(),name:String(x.name),ts:x.ts||Date.now(),data:x.data}));if(!ok.length)throw 0;if(putSaves(ok.concat(getSaves()))){renderSaves();alert('تم استيراد '+ok.length+' نسخة.')}}catch(x){alert('الملف غير صالح.')}};
  r.readAsText(t.files[0]);t.value=''});
 let ACT=-1;
-const itemLabel=i=>{const x=S.ex[i];if(x.d==2)return exName(i)+' — سورة '+(W.n[x.su-1]||'');if(x.d==3)return exName(i)+' — حديث نبوي';return exName(i)+(x.t?': '+x.t:'')};
+const itemLabel=i=>{const x=S.ex[i];if(x.d==2)return 'سورة — '+(W.n[x.su-1]||'');if(x.d==3)return 'حديث نبوي';return hLabel(x)+(x.t?': '+x.t:'')};
 function openPop(t){const bar=document.querySelector('.bar'),p=$('#addpop'),bt=bar.getBoundingClientRect().bottom;p.style.top=(bt+6)+'px';p.style.maxHeight='calc(100vh - '+(bt+18)+'px)';
  const w=(S.s.lab||'التمرين|m').split('|')[0].replace(/^ال/,''),hold=S.ex.map((x,i)=>(!x.d||x.d==2||x.d==3)?i:-1).filter(i=>i>=0);
  const tg=t!=null&&t!==''?+t:(hold.includes(ACT)?ACT:(hold.length?hold[hold.length-1]:-1));
  $('#addto').innerHTML=hold.length?hold.map(i=>`<option value="${i}"${i==tg?' selected':''}>${esc(itemLabel(i))}</option>`).join(''):'<option value="-1">(لا يوجد بعد — يُنشأ تمرين)</option>';
- $('#pop-s').innerHTML=`<button class="p" data-a="padd" data-k="ex">+ ${w} جديد</button><button data-a="padd" data-k="dv">فاصل جديد</button>`;
+ $('#pop-s').innerHTML=['التمرين','السؤال','الوضعية','المسألة','النشاط','الجزء'].map((w,i)=>`<button${i==0?' class="p"':''} data-a="padd" data-k="h" data-w="${w}">${w}</button>`).join('');
  $('#pop-t').innerHTML='<button data-a="padd" data-k="qb">📖 سورة قرآنية</button><button data-a="padd" data-k="hb">📜 حديث نبوي</button>';
  $('#pop-q').innerHTML=TM.map(k=>`<button data-a="padd" data-k="q" data-y="${k}">${T[k]}</button>`).join('');
  $('#pop-l').innerHTML=['dl','bl'].map(k=>`<button data-a="padd" data-k="q" data-y="${k}">${T[k]}</button>`).join('');
@@ -548,14 +589,12 @@ function openPop(t){const bar=document.querySelector('.bar'),p=$('#addpop'),bt=b
 const closePop=()=>{$('#addbk').hidden=true;$('#addpop').hidden=true};
 function goEdit(i,qj){const sec=$('#exs').children[i];if(!sec)return;let el=sec;if(qj!=null){const qs=sec.querySelectorAll(':scope>.q');el=qs[qj]||sec}
  el.scrollIntoView({behavior:'smooth',block:'center'});const f=el.querySelector('textarea,input:not([type=number]),select');if(f)f.focus({preventScroll:true})}
-function popAdd(k,y){const t=parseInt($('#addto').value),hasT=t>=0&&S.ex[t]&&(!S.ex[t].d||S.ex[t].d==2||S.ex[t].d==3);closePop();
- const ins=o=>{const at=hasT?t+1:S.ex.length;S.ex.splice(at,0,o);return at};let ni=-1,qj=null;
- if(k=='ex')ni=ins({t:'',p:'4',q:[]});
- else if(k=='dv')ni=ins({d:1,t:'الجزء '+(S.ex.filter(z=>z.d==1).length+1)});
- else if(k=='pb')ni=ins({d:4});
+function popAdd(k,y,w){const t=parseInt($('#addto').value),hasT=t>=0&&S.ex[t]&&(!S.ex[t].d||S.ex[t].d==2||S.ex[t].d==3);closePop();
+ const at0=hasT?t+1:S.ex.length,ins=o=>{S.ex.splice(at0,0,o);return at0};let ni=-1,qj=null;
+ if(k=='h'){const nx=nextOrd(w,at0);ni=ins(w=='الجزء'?{d:1,w:'الجزء',n:nx,t:''}:{w,n:nx,t:'',p:'',q:[]})}
  else if(k=='qb'){const b={d:2,su:'112',fa:'1',ta:'4',pre:'',q:[]};fillQ(b);ni=ins(b)}
  else if(k=='hb')ni=ins({d:3,e:'',r:'',c:'',q:[]});
- else{ni=hasT?t:-1;if(ni<0){S.ex.push({t:'',p:'4',q:[]});ni=S.ex.length-1}S.ex[ni].q.push(newQ(y));qj=S.ex[ni].q.length-1}
+ else{ni=hasT?t:-1;if(ni<0){S.ex.push({w:'التمرين',n:'1',t:'',p:'',q:[]});ni=S.ex.length-1}S.ex[ni].q.push(newQ(y));qj=S.ex[ni].q.length-1}
  ACT=ni;ed();upd();goEdit(ni,qj)}
 function addPage(){const at=(ACT>=0&&ACT<S.ex.length)?ACT+1:S.ex.length;S.ex.splice(at,0,{d:4});ACT=at;ed();upd();goEdit(at)}
 document.addEventListener('focusin',e=>{const c=e.target.closest&&e.target.closest('#exs>*');if(c)ACT=[...c.parentNode.children].indexOf(c)});

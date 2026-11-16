@@ -177,6 +177,8 @@ label{gap:5px}
 .clr{flex-direction:row;align-items:center;gap:8px;font-size:13px;color:var(--ink)}.clr input{width:42px;min-height:36px;padding:2px;border-radius:8px;cursor:pointer}
 .bln{height:1.9em}
 .wn{color:var(--warn);font-weight:700;font-size:12px}
+.bgap{margin-top:calc(var(--fs,13pt)*.95)}
+.pcont>.bgap:first-child{margin-top:calc(var(--fs,13pt)*.95)}
 @media print{.bk,.pop{display:none!important}}
 @media print{
  .sheet{zoom:1!important;width:auto;height:auto;padding:0;margin:0;box-shadow:none;background:none;break-after:page;page-break-after:always}
@@ -188,7 +190,7 @@ label{gap:5px}
 <body data-v="ed">
 <div class="bar">
  <div class="bg b-top">
-  <div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.13.0</span></div>
+  <div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.13.1</span></div>
   <button class="ib" data-a="view" data-v="set-saves" aria-label="المحفوظات" title="المحفوظات"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></button>
   <button class="p pgb" data-a="addpg">+ صفحة</button>
   <button class="ib" id="inst" data-a="install" aria-label="تثبيت التطبيق" title="تثبيت التطبيق" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg></button>
@@ -236,7 +238,7 @@ label{gap:5px}
     <label>الخط<select data-s="font"><option value="Amiri">أميري</option><option value="Cairo">القاهرة</option><option value="Tajawal">تجوال</option><option value="Noto Naskh Arabic">نسخ</option><option value="Almarai">المراعي</option><option value="IBM Plex Sans Arabic">آي بي إم بلكس</option><option value="Noto Kufi Arabic">نوتو كوفي</option><option value="Scheherazade New">شهرزاد</option><option value="Lateef">لطيف</option><option value="Markazi Text">مركزي</option><option value="El Messiri">المسيري</option><option value="Reem Kufi">ريم كوفي</option><option value="Aref Ruqaa">عارف رقعة</option><option value="Mada">مدى</option></select></label>
     <label>خط الأسئلة<select data-s="qfont"><option value="">نفس خط الورقة</option><option value="Amiri">أميري</option><option value="Cairo">القاهرة</option><option value="Tajawal">تجوال</option><option value="Noto Naskh Arabic">نسخ</option><option value="Almarai">المراعي</option><option value="IBM Plex Sans Arabic">آي بي إم بلكس</option><option value="Noto Kufi Arabic">نوتو كوفي</option><option value="Scheherazade New">شهرزاد</option><option value="Lateef">لطيف</option><option value="Markazi Text">مركزي</option><option value="El Messiri">المسيري</option><option value="Reem Kufi">ريم كوفي</option><option value="Aref Ruqaa">عارف رقعة</option><option value="Mada">مدى</option></select></label>
     <label>خط عناوين الأسئلة والأجزاء<select data-s="tfont"><option value="">نفس خط الأسئلة</option><option value="Amiri">أميري</option><option value="Cairo">القاهرة</option><option value="Tajawal">تجوال</option><option value="Noto Naskh Arabic">نسخ</option><option value="Almarai">المراعي</option><option value="IBM Plex Sans Arabic">آي بي إم بلكس</option><option value="Noto Kufi Arabic">نوتو كوفي</option><option value="Scheherazade New">شهرزاد</option><option value="Lateef">لطيف</option><option value="Markazi Text">مركزي</option><option value="El Messiri">المسيري</option><option value="Reem Kufi">ريم كوفي</option><option value="Aref Ruqaa">عارف رقعة</option><option value="Mada">مدى</option></select></label>
-    <label>علامة بداية السؤال<select data-s="qnum"><option value="dash">شرطة -</option><option value="num">رقم 1-</option></select></label>
+    <label>علامة بداية السؤال<select data-s="qnum"><option value="dash">شرطة -</option><option value="num">رقم 1-</option><option value="none">بدون</option></select></label>
     <label>المسافة بين الإطار وأعلى الترويسة (مم)<input type="number" step="0.5" min="0" max="30" data-s="pt"></label>
     <label>حجم الخط<select data-s="size"><option value="10">10</option><option value="10.5">10.5</option><option value="11">11</option><option value="11.5">11.5</option><option value="12">12</option><option value="12.5">12.5</option><option value="13">13</option><option value="13.5">13.5</option><option value="14">14</option><option value="14.5">14.5</option><option value="15">15</option><option value="15.5">15.5</option><option value="16">16</option><option value="16.5">16.5</option><option value="17">17</option><option value="17.5">17.5</option><option value="18">18</option></select></label>
    </div>
@@ -352,7 +354,7 @@ const qblock=(x,i)=>{const a=x.q||[],up=a.filter(q=>q.up=='1'),dn=a.filter(q=>q.
  const upH=up.map(q=>{const n=num(q);return n==-1?`<div class="qq ins">${nl(q.x)}</div>`:qhtml(q,n,true).replace('class="qq','class="qq ins')}).join('');
  const upL=up.map(linesHtml).join('');
  const dnH=dn.map(q=>isLine(q)?qhtml(q,0):qhtml(q,num(q))).join('');
- return upH+box+upL+dnH};
+ return (upH+box).replace('class="','class="bgap ')+upL+dnH};
 const ansColor=()=>/^#[0-9a-f]{6}$/i.test(S.s.ansclr||'')?S.s.ansclr:'#000000';
 const ahead='<div class="arow ah"><div>السؤال</div><div>الإجابة النموذجية</div><div>العلامة</div></div>';
 const arows=qs=>(qs||[]).filter(q=>!isLine(q)).map((q,j)=>`<div class="arow"><div>${esc(qlab(q,j+1))}</div><div style="color:${ansColor()}">${ansOf(q)}</div><div>${q.pt?esc(q.pt):''}</div></div>`).join('')||'<div class="arow"><div>&nbsp;</div><div></div><div></div></div>';
@@ -419,7 +421,7 @@ const parseG=e=>String(e||'').split('\n').filter(l=>l.trim()||l.includes('|')).m
 const gOf=q=>{if(!q.g){const g=parseG(q.e),c=Math.max(3,...g.map(r=>r.length));q.g=g.length?g.map(r=>Array.from({length:c},(_,k)=>r[k]||'')):[['العمود 1','العمود 2','العمود 3'],['','',''],['','','']]}return q.g};
 const mOf=q=>{if(!q.m){q.m=lines(q.e).map(l=>{const a=l.split('|').map(s=>s.trim());return [a[0]||'',a[1]||'']});if(!q.m.length)q.m=[['',''],['','']]}return q.m};
 function qhtml0(q,n){
- const h=`<span class="num">${S.s.qnum=='num'?n+'-':'-'}</span> `,iq=q.x?`<div><span class="num">-</span> ${nl(q.x)}</div>`:'';
+ const nm=S.s.qnum=='none'?'':`<span class="num">${S.s.qnum=='num'?n+'-':'-'}</span> `,h=nm,iq=q.x?`<div>${S.s.qnum=='none'?'':'<span class="num">-</span> '}${nl(q.x)}</div>`:'';
  if(q.y=='mcq')return `<div class="qq">${h}${nl(q.x)}<div class="opts">${lines(q.e).map((o,k)=>`<div>${'أبجدهوزحط'[k]||k+1}) ${esc(o)}</div>`).join('')}</div></div>`;
  if(q.y=='sq')return `<div class="qq">${h}${nl(q.x)}</div>`;
  if(q.y=='tf')return `<div class="qq">${h}${nl(q.x)} <span style="white-space:nowrap"><i class="bx"></i>صح <i class="bx"></i>خطأ</span></div>`;

@@ -144,7 +144,6 @@ input,select,textarea{border-radius:10px;min-height:42px}textarea{min-height:60p
 .pb{display:inline-flex;align-items:center;justify-content:flex-end;width:5.6em;height:1.5em;padding:0 .5em;border:1.3px solid #000;border-radius:8px;vertical-align:middle;margin:0 4px;font-style:normal}.pb b{font-weight:400;font-size:.85em}
 .foot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:14px;font-weight:700}
 .sg{display:inline-flex;align-items:center;gap:8px}.sgi{object-fit:contain}
-body[data-v="set-saves"] #v-saves{display:flex;flex-direction:column;gap:12px}
 .svi{border:1px solid var(--bd);border-radius:12px;padding:8px 10px;margin-top:8px}.svi b{display:block;line-height:1.7}.svi small{color:var(--mut)}
 .bk{position:fixed;inset:0;z-index:28;background:rgba(0,0,0,.28)}
 .pop{position:fixed;z-index:29;left:10px;right:10px;max-width:440px;margin:0 auto;overflow:auto;background:var(--card);border:1px solid var(--bd);border-radius:16px;box-shadow:0 14px 34px rgba(0,0,0,.4);padding:10px 12px}
@@ -179,6 +178,26 @@ label{gap:5px}
 .wn{color:var(--warn);font-weight:700;font-size:12px}
 .bgap{margin-top:calc(var(--fs,13pt)*.95)}
 .pcont>.bgap:first-child{margin-top:calc(var(--fs,13pt)*.95)}
+:root{--kg:#1f9d63;--ko:#e8851f;--kb:#3d7be0}
+body[data-v="home"] .b-home,body[data-v="new"] .b-set{display:flex}
+body[data-v="home"] #v-home,body[data-v="new"] #v-new{display:flex;flex-direction:column;gap:12px}
+body[data-v="new"] .b-set .tot{display:none}
+.nav #nbq{display:none}body[data-v^="set"] .nav #nbq{display:flex}
+body[data-v="pv"] .b-pv.g3{grid-template-columns:auto repeat(3,1fr)}
+.bigb{width:100%;min-height:50px;font-size:16px}
+#hlist{display:flex;flex-direction:column;gap:10px}
+.xc{background:var(--card);border:1px solid var(--bd);border-inline-start:7px solid var(--kc,var(--bd));border-radius:14px;padding:10px 12px;box-shadow:0 1px 2px rgba(0,0,0,.06),0 6px 14px rgba(0,0,0,.05);cursor:pointer}
+.xc.k-g{--kc:var(--kg)}.xc.k-o{--kc:var(--ko)}.xc.k-b{--kc:var(--kb)}
+.xc.cur{outline:2px solid var(--kc);outline-offset:1px}
+.xt{display:flex;align-items:center;gap:8px;justify-content:space-between}.xt b{font-size:16px;line-height:1.5}
+.bd2{background:color-mix(in srgb,var(--kc) 18%,transparent);color:var(--kc);border-radius:20px;padding:1px 11px;font-size:12px;font-weight:700;white-space:nowrap}
+.xm{color:var(--mut);font-size:13px;margin-top:4px}.xw{color:var(--warn)}
+.xa{display:flex;gap:6px;margin-top:10px}.xa button{min-height:36px;padding:4px 14px;font-size:13px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{min-height:36px;padding:4px 16px;border-radius:20px;font-size:13px}
+.empty{color:var(--mut);text-align:center;padding:30px 10px;line-height:1.9}
+#toast{position:fixed;left:12px;right:12px;bottom:calc(14px + env(safe-area-inset-bottom,0px));max-width:420px;margin:0 auto;background:#262626;color:#fff;border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;z-index:40;font-size:14px}
+#toast[hidden]{display:none}#toast button{min-height:34px;padding:2px 14px;background:#444;color:#fff;border-color:#666}
+@media print{#toast{display:none!important}}
 @media print{.bk,.pop{display:none!important}}
 @media print{
  .sheet{zoom:1!important;width:auto;height:auto;padding:0;margin:0;box-shadow:none;background:none;break-after:page;page-break-after:always}
@@ -187,30 +206,26 @@ label{gap:5px}
 }
 </style>
 </head>
-<body data-v="ed">
+<body data-v="home">
 <div class="bar">
- <div class="bg b-top">
-  <div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.13.1</span></div>
-  <button class="ib" data-a="view" data-v="set-saves" aria-label="المحفوظات" title="المحفوظات"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></button>
-  <button class="p pgb" data-a="addpg">+ صفحة</button>
-  <button class="ib" id="inst" data-a="install" aria-label="تثبيت التطبيق" title="تثبيت التطبيق" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg></button>
-  <span class="tot"></span>
- </div>
+ <div class="bg b-home"><div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.14.0</span></div><button class="ib instb" data-a="install" aria-label="تثبيت التطبيق" title="تثبيت التطبيق" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg></button></div>
+ <div class="bg b-home"><button class="p bigb" data-a="newx"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> امتحان / فرض جديد</button></div>
+ <div class="bg b-top"><div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.14.0</span></div><button class="ib" data-a="home" aria-label="الصفحة الرئيسية" title="الصفحة الرئيسية"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></button><button class="p pgb" data-a="newx">+ امتحان/فرض</button><button class="ib instb" data-a="install" aria-label="تثبيت التطبيق" title="تثبيت التطبيق" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg></button><span class="tot"></span></div>
  <div class="bg b-nav nav">
   <button class="p tb" data-a="popen"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>إضافة</span></button>
+  <button class="tb" id="nbq" data-a="view" data-v="ed"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>الأسئلة</span></button>
   <button class="tb" data-a="view" data-v="pv"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span>معاينة</span></button>
   <button class="tb" data-a="view" data-v="set-head"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>الترويسة</span></button>
   <button class="tb" data-a="view" data-v="set-design"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg><span>التنسيق</span></button>
  </div>
- <div class="bg b-set"><button data-a="back"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> الأسئلة</button><b id="stitle"></b><span class="tot"></span></div>
- <div class="bg b-pv g3"><button data-a="back"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> رجوع</button><button data-a="view" data-v="set-design"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg> التنسيق</button><button class="p" data-a="print"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/></svg> طباعة</button></div>
+ <div class="bg b-set"><button class="ib" data-a="home" aria-label="الصفحة الرئيسية" title="الصفحة الرئيسية"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></button><b id="stitle"></b><span class="tot"></span></div>
+ <div class="bg b-pv g3"><button class="ib" data-a="home" aria-label="الصفحة الرئيسية" title="الصفحة الرئيسية"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></button><button data-a="view" data-v="ed"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg> الأسئلة</button><button data-a="view" data-v="set-design"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="18" r="2"/></svg> التنسيق</button><button class="p" data-a="print"><svg class="ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9V3h12v6M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="7"/></svg> طباعة</button></div>
  <div class="bg b-pv fsb"><select data-s="mode" aria-label="المعروض"><option value="q">ورقة الأسئلة</option><option value="a">نموذج الإجابة</option><option value="b">الاثنان معاً</option></select><button data-a="fs" data-t="-" aria-label="تصغير الخط">A−</button><b id="fsv" class="fsv"></b><button data-a="fs" data-t="+" aria-label="تكبير الخط">A+</button></div>
  <div class="bg b-pv r3"><span id="pgc" class="pgc"></span><label class="clr" id="clrw">لون الإجابة<input type="color" data-s="ansclr" aria-label="لون الإجابة"></label><button data-a="fit1">ملاءمة</button></div>
 </div>
 <div class="main">
  <div id="ed" class="view">
   <div id="exs"></div>
-  <button data-a="reset">ورقة جديدة</button>
   <div class="sec" style="font-size:12px;color:var(--mut);line-height:1.9">مصادر البيانات: نص القرآن برواية ورش من <a href="https://quranpedia.net" target="_blank" rel="noopener" style="color:var(--ac)">الموسوعة القرآنية quranpedia.net</a> (إصدار البيانات 2026-11-05). الأحاديث من <a href="https://hadeethenc.com/ar" target="_blank" rel="noopener" style="color:var(--ac)">موسوعة الأحاديث النبوية hadeethenc.com</a> (الإصدار 1.8.0).<br>للتثبيت على الآيفون: من Safari اضغط «مشاركة» ثم «إضافة إلى الشاشة الرئيسية».</div>
  </div>
  <div id="v-head" class="view">
@@ -263,20 +278,27 @@ label{gap:5px}
    <span style="font-size:12px;color:var(--mut);line-height:1.8;display:block;margin-top:8px">يُطبَّق منها ما يخص الجهاز الذي تستعمله الآن. 5 مم = 0.5 سم. قد تفرض بعض الطابعات وخدمات الطباعة هوامش دنيا أكبر، فإن لم يتغير شيء احفظ الورقة PDF ثم اطبعها.</span>
   </div>
  </div>
- <div id="v-saves" class="view">
-  <div class="sec"><h2>حفظ نسخة من الاختبار الحالي</h2>
-   <label>اسم النسخة<input id="svname"></label>
-   <div class="add"><button class="p" data-a="svSave">حفظ نسخة</button></div>
-   <span style="font-size:12px;color:var(--mut);line-height:1.8;display:block;margin-top:6px">تُحفظ الأسئلة والترويسة والتنسيق. أما صورة الإمضاء وهوامش الطباعة فتبقى إعدادات الجهاز ولا تتغير عند فتح نسخة.</span>
+ <div id="v-home" class="view">
+  <div class="sec"><input id="hq" placeholder="ابحث في الاختبارات (المادة، المستوى، النوع...)" aria-label="بحث"><div class="chips" style="margin-top:8px"><button class="chip on" data-a="hf" data-f="">الكل</button><button class="chip" data-a="hf" data-f="g">فروض</button><button class="chip" data-a="hf" data-f="o">اختبارات</button></div></div>
+  <div id="hlist"></div>
+  <div class="sec"><h2>نسخ احتياطي</h2>
+   <div class="add"><button data-a="lexp">تصدير كل الاختبارات (ملف)</button></div>
+   <label style="margin-top:8px">استيراد ملف<input type="file" id="lfile" accept="application/json,.json"></label>
+   <span style="font-size:12px;color:var(--mut);line-height:1.8;display:block;margin-top:6px">الاختبارات تُحفظ تلقائياً في ذاكرة هذا المتصفح. استعمل التصدير للاحتياط أو لنقلها إلى جهاز آخر.</span>
   </div>
-  <div class="sec"><h2>الاختبارات المحفوظة</h2><div id="svlist"></div>
-   <div class="add" style="margin-top:12px"><button data-a="svExp">تصدير الكل (ملف)</button></div>
-   <label style="margin-top:8px">استيراد ملف نسخ<input type="file" id="svfile" accept="application/json,.json"></label>
-   <span style="font-size:12px;color:var(--mut);line-height:1.8;display:block;margin-top:6px">النسخ محفوظة في هذا المتصفح فقط. استعمل التصدير للاحتفاظ بنسخة احتياطية أو لنقلها إلى جهاز آخر.</span>
+ </div>
+ <div id="v-new" class="view">
+  <div class="sec"><h2>إنشاء اختبار جديد</h2>
+   <label>النوع<select id="nx-kind"></select></label>
+   <label>المادة<input id="nx-subject"></label>
+   <div class="g"><label>المستوى<select id="nx-level"></select></label><label>الشعبة / القسم<input id="nx-branch"></label></div>
+   <span style="font-size:12px;color:var(--mut);line-height:1.8;display:block;margin-top:8px">يُحفظ الاختبار الحالي تلقائياً. ويُنسخ إلى الاختبار الجديد: المديرية والمؤسسة والسنة والمدة وكل إعدادات التنسيق، وتبقى الأسئلة فارغة.</span>
+   <div class="add"><button class="p" data-a="nxgo">إنشاء الاختبار</button></div>
   </div>
  </div>
  <div class="pv view" id="pv"><div id="pages"></div></div>
 </div>
+<div id="toast" hidden></div>
 <div id="addbk" class="bk" hidden></div>
 <div id="addpop" class="pop" hidden role="dialog" aria-label="إضافة">
  <label>الهدف (تُضاف إليه الأسئلة، وتُدرج العناصر الجديدة بعده)<select id="addto"></select></label>
@@ -298,28 +320,85 @@ s:{frame:'double',font:'Amiri',size:'13',lab:'التمرين|m',qfont:'',tfont:'
 ex:[{t:'',p:'6',q:[{y:'mcq',x:'عاصمة الجزائر هي:',e:'وهران\nالجزائر\nقسنطينة\nعنابة'},{y:'tf',x:'الجزائر دولة عربية إفريقية.'},{y:'fill',x:'تقع الجزائر في شمال ___ وتطل على البحر ___.'}]},
 {t:'',p:'6',q:[{y:'match',x:'صِل كل كلمة بضدها:',e:'كبير | صغير\nطويل | قصير\nسريع | بطيء'}]},
 {t:'الوضعية الإدماجية',p:'8',q:[{y:'sit',x:'1) اقرأ السند ثم لخّص فكرته في سطرين.\n2) اكتب فقرة قصيرة تعبّر فيها عن رأيك.',e:'في صباح يوم ربيعي خرج أحمد مع جدّه إلى الحقل...'}]}]});
-let S;try{S=JSON.parse(localStorage.getItem('exam1'))}catch(e){}
-if(!S||!S.ex)S=DEF();
-S.ex.forEach(x=>{if(x.d>=2&&!x.q)x.q=[]});
-(function(){const word=((S.s&&S.s.lab)||'التمرين|m').split('|')[0];let c=0;const out=[];
- S.ex.forEach(x=>{
-  if(!x.d){c++;if(x.n==null){x.w=word;x.n=String(c)}out.push(x)}
-  else if(x.d==2||x.d==3){c++;
-   if(x.ht=='1'||x.ht=='2'){out.push({w:word,n:String(c),t:'',p:'',q:[]});if(x.ht=='2'&&String(x.ins||'').trim()){x.q=x.q||[];x.q.unshift({y:'sq',x:x.ins,up:'1',pt:'',ln:'0'})}}
-   delete x.ht;delete x.ins;out.push(x)}
-  else out.push(x)});
- S.ex=out})();
-S.h=S.h||{};S.h.date=S.h.date||'';S.h.datetxt=S.h.datetxt||'';S.h.hadj=S.h.hadj||'0';S.h.gm=S.h.gm||'dz';
 const lat=s=>String(s==null?'':s).replace(/[٠-٩]/g,c=>'٠١٢٣٤٥٦٧٨٩'.indexOf(c));
-S.ex.forEach(x=>{if(x.d==2){x.e=lat(x.e);x.cap=lat(x.cap)}(x.q||[]).forEach(q=>{if(q.y=='qr'){q.e=lat(q.e);q.cap=lat(q.cap)}})});
-S.s=S.s||{};S.s.lab=S.s.lab||'التمرين|m';S.s.qfont=S.s.qfont||'';S.s.tfont=S.s.tfont||'';S.s.qnum=S.s.qnum||'dash';S.s.mode=S.s.mode||'q';S.s.ph=S.s.ph||PH();if(S.s.ph=='262')S.s.ph='safe';if(S.s.ph=='282'||S.s.ph=='286')S.s.ph='full';
-['pa','pc'].forEach(p=>['t','r','b','l'].forEach(k=>{S.s[p+'_'+k]=S.s[p+'_'+k]||'5'}));
-S.s.sig=S.s.sig||'off';if(S.s.sigtxt==null)S.s.sigtxt='إمضاء الأستاذ(ة):';S.s.sigsz=S.s.sigsz||'s';S.s.sigimg=S.s.sigimg||'';S.s.ftr=S.s.ftr||'on';if(S.s.ftxt==null)S.s.ftxt='بالتوفيق والنجاح';S.s.pt=S.s.pt||'6';S.s.ansclr=S.s.ansclr||'#000000';
+function normS(d){
+ if(!d||!Array.isArray(d.ex))d=DEF();
+ d.ex.forEach(x=>{if(x.d>=2&&!x.q)x.q=[]});
+ (function(){const word=((d.s&&d.s.lab)||'التمرين|m').split('|')[0];let c=0;const out=[];
+  d.ex.forEach(x=>{
+   if(!x.d){c++;if(x.n==null){x.w=word;x.n=String(c)}out.push(x)}
+   else if(x.d==2||x.d==3){c++;
+    if(x.ht=='1'||x.ht=='2'){out.push({w:word,n:String(c),t:'',p:'',q:[]});if(x.ht=='2'&&String(x.ins||'').trim()){x.q=x.q||[];x.q.unshift({y:'sq',x:x.ins,up:'1',pt:'',ln:'0'})}}
+    delete x.ht;delete x.ins;out.push(x)}
+   else out.push(x)});
+  d.ex=out})();
+ d.h=d.h||{};d.h.date=d.h.date||'';d.h.datetxt=d.h.datetxt||'';d.h.hadj=d.h.hadj||'0';d.h.gm=d.h.gm||'dz';
+ d.ex.forEach(x=>{if(x.d==2){x.e=lat(x.e);x.cap=lat(x.cap)}(x.q||[]).forEach(q=>{if(q.y=='qr'){q.e=lat(q.e);q.cap=lat(q.cap)}})});
+ const s=d.s=d.s||{};s.lab=s.lab||'التمرين|m';s.qfont=s.qfont||'';s.tfont=s.tfont||'';s.qnum=s.qnum||'dash';s.mode=s.mode||'q';s.ph=s.ph||PH();if(s.ph=='262')s.ph='safe';if(s.ph=='282'||s.ph=='286')s.ph='full';
+ ['pa','pc'].forEach(p=>['t','r','b','l'].forEach(k=>{s[p+'_'+k]=s[p+'_'+k]||'5'}));
+ s.sig=s.sig||'off';if(s.sigtxt==null)s.sigtxt='إمضاء الأستاذ(ة):';s.sigsz=s.sigsz||'s';s.sigimg=s.sigimg||'';s.ftr=s.ftr||'on';if(s.ftxt==null)s.ftxt='بالتوفيق والنجاح';s.pt=s.pt||'6';s.ansclr=s.ansclr||'#000000';s.frame=s.frame||'double';s.font=s.font||'Amiri';s.size=s.size||'13';
+ return d}
+let S=null,ACTID=null;
 const $=s=>document.querySelector(s);
 const esc=v=>String(v==null?'':v).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const lines=v=>String(v||'').split('\n').map(s=>s.trim()).filter(Boolean);
 const nl=v=>esc(v).replace(/\n/g,'<br>');
-function save(){try{localStorage.setItem('exam1',JSON.stringify(S))}catch(e){}}
+const LK='exam_idx',AK='exam_active',DK='exam_dev';
+const rj=k=>{try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}};
+const wj=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}};
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const DEVK=k=>k=='sigimg'||/^p[ac]_[trbl]$/.test(k);
+const getIdx=()=>{const a=rj(LK);return Array.isArray(a)?a:[]};
+const devOf=()=>{const o={};if(S&&S.s)Object.keys(S.s).forEach(k=>{if(DEVK(k))o[k]=S.s[k]});return o};
+const applyDev=d=>{Object.assign(d.s=d.s||{},rj(DK)||{});return d};
+const dataOf=d=>{const c=JSON.parse(JSON.stringify(d));if(c.s)Object.keys(c.s).forEach(k=>{if(DEVK(k))delete c.s[k]});return c};
+const metaOf=d=>{const h=d.h||{};let t=0;try{t=Math.round((d.ex||[]).reduce((a,x)=>a+own(x),0)*100)/100}catch(e){}return {kind:h.kind||'',subject:h.subject||'',level:h.level||'',branch:h.branch||'',year:h.year||'',date:h.date||'',tot:t}};
+function save(){if(!ACTID||!S)return;try{localStorage.setItem('exam_'+ACTID,JSON.stringify(dataOf(S)));const idx=getIdx();let m=idx.find(e=>e.id==ACTID);if(!m){m={id:ACTID};idx.push(m)}Object.assign(m,metaOf(S),{ts:Date.now()});localStorage.setItem(LK,JSON.stringify(idx));localStorage.setItem(DK,JSON.stringify(devOf()));localStorage.setItem(AK,ACTID)}catch(e){}}
+function migrateLegacy(){if(localStorage.getItem(LK)!==null)return;const idx=[];let act=null;
+ const put=(d,name,ts)=>{if(!d||!Array.isArray(d.ex))return null;const n=normS(JSON.parse(JSON.stringify(d))),id=uid();wj('exam_'+id,dataOf(n));idx.push(Object.assign({id,name:name||'',ts:ts||Date.now()},metaOf(n)));return id};
+ const cur=rj('exam1');if(cur)act=put(cur,'',Date.now());
+ (rj('exam1_saves')||[]).forEach(e=>{if(e&&e.data)put(e.data,e.name,e.ts)});
+ wj(LK,idx);if(act)localStorage.setItem(AK,act);
+ if(cur&&cur.s){const dv={};Object.keys(cur.s).forEach(k=>{if(DEVK(k))dv[k]=cur.s[k]});wj(DK,dv)}}
+function initLib(){migrateLegacy();const idx=getIdx();let id=localStorage.getItem(AK);
+ if(!(id&&rj('exam_'+id))){const last=idx.slice().sort((a,b)=>b.ts-a.ts).find(e=>rj('exam_'+e.id));id=last?last.id:null}
+ if(id){S=applyDev(normS(rj('exam_'+id)));ACTID=id}else{S=applyDev(normS(DEF()));ACTID=uid()}
+ save()}
+const titleOf=m=>m.name||((m.kind||'اختبار')+(m.subject?' — '+m.subject:''));
+const kindOf=m=>/فرض/.test(m.kind||'')?'g':/(اختبار|امتحان)/.test(m.kind||'')?'o':'b';
+let HF='',UNDO=null,TT=null;
+function toast(msg,lab,fn){const t=$('#toast');t.innerHTML=`<span>${esc(msg)}</span>${lab?`<button id="tbtn">${esc(lab)}</button>`:''}`;t.hidden=false;t._fn=fn;clearTimeout(TT);TT=setTimeout(()=>{t.hidden=true},8000)}
+function loadExam(id){const d=rj('exam_'+id);if(!d)return false;S=applyDev(normS(d));ACTID=id;localStorage.setItem(AK,id);SY=0;ed();pv();return true}
+function openExam(id){if(id!=ACTID){save();if(!loadExam(id))return}go('ed')}
+function newExamData(o){const b=S||normS(DEF());return normS({h:Object.assign({},b.h,{kind:o.kind,subject:o.subject,level:o.level,branch:o.branch,date:'',datetxt:'',hadj:'0'}),s:JSON.parse(JSON.stringify(b.s)),ex:[{w:'التمرين',n:'1',t:'',p:'',q:[]}]})}
+function createExam(o){save();const d=newExamData(o),id=uid(),idx=getIdx();wj('exam_'+id,dataOf(d));idx.push(Object.assign({id,name:'',ts:Date.now()},metaOf(d)));wj(LK,idx);loadExam(id);go('ed')}
+function dupExam(id){save();const d=rj('exam_'+id),m=getIdx().find(e=>e.id==id);if(!d||!m)return;const nid=uid(),idx=getIdx();wj('exam_'+nid,d);idx.push(Object.assign({},m,{id:nid,name:titleOf(m)+' (نسخة)',ts:Date.now()}));wj(LK,idx);renderHome();toast('تم تكرار الاختبار')}
+function delExam(id){const idx=getIdx(),m=idx.find(e=>e.id==id);if(!m)return;UNDO={m,d:rj('exam_'+id)};
+ wj(LK,idx.filter(e=>e.id!=id));localStorage.removeItem('exam_'+id);
+ if(id==ACTID){ACTID=null;const rest=getIdx().sort((a,b)=>b.ts-a.ts)[0];
+  if(rest)loadExam(rest.id);else{const nd=newExamData({kind:S.h.kind,subject:S.h.subject,level:S.h.level,branch:S.h.branch});S=applyDev(nd);ACTID=uid();save();ed();pv()}}
+ renderHome();toast('تم حذف «'+titleOf(m)+'»','تراجع',undoDel)}
+function undoDel(){if(!UNDO)return;const {m,d}=UNDO;UNDO=null;if(d)wj('exam_'+m.id,d);const idx=getIdx();idx.push(m);wj(LK,idx);renderHome()}
+const cardHtml=m=>{const t=kindOf(m),dt=m.date?String(m.date).split('-').reverse().join('/'):'بلا تاريخ',tt=Number(m.tot)||0;
+ return `<div class="xc k-${t}${m.id==ACTID?' cur':''}" data-id="${m.id}"><div class="xt"><b>${esc(titleOf(m))}</b><span class="bd2">${t=='g'?'فرض':t=='o'?'اختبار':'تقويم'}</span></div><div class="xm">${esc([m.subject,m.level,m.branch].filter(Boolean).join(' · '))}</div><div class="xm">${esc(dt)} · ${tt} / 20${tt!=20?' <span class="xw">⚠</span>':''}${m.id==ACTID?' · <b>المفتوح الآن</b>':''}</div><div class="xm">آخر تعديل: ${new Date(m.ts).toLocaleString('en-GB',{dateStyle:'short',timeStyle:'short'})}</div><div class="xa"><button class="p" data-a="open" data-id="${m.id}">فتح</button><button data-a="dup" data-id="${m.id}">تكرار</button><button class="x" data-a="del" data-id="${m.id}">حذف</button></div></div>`};
+function renderHome(){const q=String(($('#hq')||{}).value||'').trim();let a=getIdx().slice().sort((x,y)=>y.ts-x.ts);
+ if(HF)a=a.filter(m=>kindOf(m)==HF);
+ if(q)a=a.filter(m=>(titleOf(m)+' '+m.subject+' '+m.level+' '+m.branch+' '+m.kind).includes(q));
+ const l=$('#hlist');if(l)l.innerHTML=a.length?a.map(cardHtml).join(''):'<div class="empty">'+(getIdx().length?'لا توجد نتائج مطابقة.':'لا توجد اختبارات بعد.<br>اضغط «+ امتحان / فرض جديد» لإنشاء أول اختبار.')+'</div>';
+ document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',(c.dataset.f||'')==HF))}
+function prepNew(){const k=$('#nx-kind'),l=$('#nx-level');if(k&&!k.options.length){k.innerHTML=document.querySelector('[data-h="kind"]').innerHTML;l.innerHTML=document.querySelector('[data-h="level"]').innerHTML}
+ k.value=S.h.kind;l.value=S.h.level;$('#nx-subject').value=S.h.subject||'';$('#nx-branch').value=S.h.branch||''}
+function nxGo(){createExam({kind:$('#nx-kind').value,subject:$('#nx-subject').value.trim(),level:$('#nx-level').value,branch:$('#nx-branch').value.trim()})}
+function exportLib(){const arr=getIdx().map(m=>({id:m.id,name:m.name||'',ts:m.ts,data:rj('exam_'+m.id)})).filter(x=>x.data);if(!arr.length){alert('لا توجد اختبارات لتصديرها.');return}
+ const u=URL.createObjectURL(new Blob([JSON.stringify({app:'exam-maker',v:2,exams:arr})],{type:'application/json'})),l=document.createElement('a');l.href=u;l.download='exam-maker-exams.json';document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),2000)}
+document.addEventListener('change',e=>{const t=e.target;if(!t||t.id!='lfile'||!t.files||!t.files[0])return;const r=new FileReader();
+ r.onload=()=>{try{const j=JSON.parse(r.result),arr=Array.isArray(j)?j:(j.exams||j.saves);if(!Array.isArray(arr))throw 0;const idx=getIdx();let n=0;
+  arr.forEach(x=>{if(!x||!x.data||!Array.isArray(x.data.ex))return;const d=normS(JSON.parse(JSON.stringify(x.data))),id=uid();wj('exam_'+id,dataOf(d));idx.push(Object.assign({id,name:x.name||'',ts:x.ts||Date.now()},metaOf(d)));n++});
+  if(!n)throw 0;wj(LK,idx);renderHome();alert('تم استيراد '+n+' اختباراً.')}catch(x){alert('الملف غير صالح.')}};
+ r.readAsText(t.files[0]);t.value=''});
+document.addEventListener('click',e=>{const tb=e.target.closest&&e.target.closest('#tbtn');if(tb){const t=$('#toast');t.hidden=true;if(t._fn)t._fn();return}
+ const c=e.target.closest&&e.target.closest('.xc');if(c&&!e.target.closest('button'))openExam(c.dataset.id)});
+
 const exNo=i=>S.ex.slice(0,i).filter(z=>!z.d||z.d==2||z.d==3).length;
 const ORDF=['الأولى','الثانية','الثالثة','الرابعة','الخامسة','السادسة','السابعة','الثامنة'];
 function exName(i){const [w,g]=(S.s.lab||'التمرين|m').split('|'),n=exNo(i);return w+' '+((g=='f'?ORDF:ORD)[n]||n+1)}
@@ -508,6 +587,7 @@ addEventListener('afterprint',()=>{if(_pv&&_pv!='pv')document.body.dataset.v=_pv
 function upd(){save();pv()}
 document.addEventListener('input',e=>{
  const t=e.target,d=t.dataset;
+ if(t.id=='hq'){renderHome();return}
  if('hs' in d||'hl' in d){hsearch(d.e,d.q);return}
  if('gr' in d){gOf(S.ex[d.e].q[d.q])[d.gr][d.gc]=t.value;upd();return}
  if('mr' in d){mOf(S.ex[d.e].q[d.q])[d.mr][d.mc]=t.value;upd();return}
@@ -522,14 +602,16 @@ document.addEventListener('click',e=>{
  else if(a=='view')go(d.v);
  else if(a=='back'){if(history.state&&history.state.v&&history.state.v!='ed')history.back();else go('ed',false)}
  else if(a=='pickH'){const a2=hlib().find(z=>z.id==d.id),q=d.q===undefined?S.ex[d.e]:S.ex[d.e].q[d.q];if(a2){q.e=a2.t;q.c=a2.c;q.r='';for(const k of ['e','c','r']){const el=document.querySelector(`[data-e="${d.e}"]${d.q===undefined?':not([data-q])':`[data-q="${d.q}"]`}[data-k="${k}"]`);if(el)el.value=q[k]}upd()}}
- else if(a=='install'){if(DP){DP.prompt();DP.userChoice.finally(()=>{DP=null;$('#inst').style.display='none'})}}
+ else if(a=='install'){if(DP){DP.prompt();DP.userChoice.finally(()=>{DP=null;document.querySelectorAll('.instb').forEach(b=>b.style.display='none')})}}
  else if(a=='sigdel'){S.s.sigimg='';if(S.s.sig=='img')S.s.sig='text';ed();upd()}
- else if(a=='svSave'){const nm=($('#svname').value||'').trim()||svName(),a2=getSaves();a2.unshift({id:svId(),name:nm,ts:Date.now(),data:snap()});if(putSaves(a2)){$('#svname').value='';renderSaves()}}
- else if(a=='svOpen'){const e=getSaves().find(x=>x.id==d.id);if(e&&confirm('سيُستبدل الاختبار الحالي بهذه النسخة. إن أردت الاحتفاظ بالحالي فاحفظه أولاً. متابعة؟')){const keep={};Object.keys(S.s||{}).forEach(k=>{if(k=='sigimg'||/^p[ac]_[trbl]$/.test(k))keep[k]=S.s[k]});S=JSON.parse(JSON.stringify(e.data));S.s=Object.assign(S.s||{},keep);save();location.reload()}}
- else if(a=='svUpd'){const a2=getSaves(),e=a2.find(x=>x.id==d.id);if(e&&confirm('استبدال النسخة المحفوظة بالاختبار الحالي؟')){e.data=snap();e.ts=Date.now();if(putSaves(a2))renderSaves()}}
- else if(a=='svDel'){if(confirm('حذف هذه النسخة نهائياً؟')){putSaves(getSaves().filter(x=>x.id!=d.id));renderSaves()}}
- else if(a=='svExp'){const a2=getSaves();if(!a2.length){alert('لا توجد نسخ لتصديرها.');return}const u=URL.createObjectURL(new Blob([JSON.stringify({app:'exam-maker',saves:a2})],{type:'application/json'})),l=document.createElement('a');l.href=u;l.download='exam-maker-saves.json';document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),2000)}
- else if(a=='addpg')addPage()
+ else if(a=='home')goHome()
+ else if(a=='newx')go('new')
+ else if(a=='open')openExam(d.id)
+ else if(a=='dup')dupExam(d.id)
+ else if(a=='del')delExam(d.id)
+ else if(a=='hf'){HF=d.f;renderHome()}
+ else if(a=='nxgo')nxGo()
+ else if(a=='lexp')exportLib()
  else if(a=='popen')openPop(d.e)
  else if(a=='padd')popAdd(d.k,d.y,d.w)
  else if(a=='fs'){let v=parseFloat(S.s.size)||13;v=Math.min(18,Math.max(10,v+(d.t=='+'?0.5:-0.5)));S.s.size=String(v);upd()}
@@ -541,13 +623,13 @@ document.addEventListener('click',e=>{
  else if(a=='mv'){const i=+d.e,j=d.t=='u'?i-1:i+1;if(j>=0&&j<S.ex.length){[S.ex[i],S.ex[j]]=[S.ex[j],S.ex[i]];ed();upd()}}
  else if(a=='delEx'){if(confirm('حذف هذا التمرين؟')){S.ex.splice(d.e,1);ed();upd()}}
  else if(a=='delQ'){S.ex[d.e].q.splice(d.q,1);ed();upd()}
- else if(a=='reset'){if(confirm('بدء ورقة جديدة؟ ستُمسح الأسئلة، وتبقى الترويسة والتنسيق، ويُحفظ نسخة تلقائية من الحالية في «المحفوظات».')){autoSave();S.ex=[{w:'التمرين',n:'1',t:'',p:'',q:[]}];ed();upd()}}
 });
 addEventListener('resize',fit);
-const VT={'set-head':'إعدادات الترويسة','set-design':'تنسيق الصفحة','set-saves':'الاختبارات المحفوظة'};let SY=0;
-function go(v,push=true){if(push&&document.body.dataset.v==v)return;document.querySelectorAll('.nav button[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v==v));if(document.body.dataset.v=='ed'&&v!='ed')SY=window.scrollY;document.body.dataset.v=v;const t=$('#stitle');if(t)t.textContent=VT[v]||'';if(v=='pv')pv();if(v=='set-saves')renderSaves();window.scrollTo(0,v=='ed'?SY:0);if(push&&v!='ed'){try{history.pushState({v},'')}catch(x){}}}
-addEventListener('popstate',e=>go((e.state&&e.state.v)||'ed',false));
-try{history.replaceState({v:'ed'},'')}catch(x){}
+const VT={'set-head':'إعدادات الترويسة','set-design':'تنسيق الصفحة','new':'امتحان / فرض جديد'};let SY=0;
+function go(v,push=true){if(push&&document.body.dataset.v==v)return;document.querySelectorAll('.nav button[data-v]').forEach(b=>b.classList.toggle('on',b.dataset.v==v));if(document.body.dataset.v=='ed'&&v!='ed')SY=window.scrollY;document.body.dataset.v=v;const t=$('#stitle');if(t)t.textContent=VT[v]||'';if(v=='pv')pv();if(v=='home')renderHome();if(v=='new')prepNew();window.scrollTo(0,v=='ed'?SY:0);if(push&&v!='home'){try{const dd=((history.state&&history.state.d)||0)+1;history.pushState({v,d:dd},'')}catch(x){}}}
+addEventListener('popstate',e=>go((e.state&&e.state.v)||'home',false));
+try{history.replaceState({v:'home',d:0},'')}catch(x){}
+function goHome(){const d=(history.state&&history.state.d)||0;if(d>0){try{history.go(-d);return}catch(x){}}go('home',false)}
 let LF=null,REC=null,LIS=false;
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 function micUI(){const b=$('#mic');b.classList.toggle('on',LIS);b.textContent=LIS?'⏹ إيقاف الإملاء':'🎤 إملاء صوتي'}
@@ -565,18 +647,6 @@ document.addEventListener('focusin',e=>{const t=e.target;if(t.matches&&t.matches
 $('#mic').addEventListener('pointerdown',e=>e.preventDefault());
 function loadSig(f){const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const m=600,k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.max(1,Math.round(im.width*k));c.height=Math.max(1,Math.round(im.height*k));c.getContext('2d').drawImage(im,0,0,c.width,c.height);S.s.sigimg=c.toDataURL('image/png');if(S.s.sig!='img')S.s.sig='img';ed();upd()};im.onerror=()=>alert('تعذّر قراءة الصورة');im.src=r.result};r.readAsDataURL(f)}
 document.addEventListener('change',e=>{const t=e.target;if(t&&t.id=='sigfile'&&t.files&&t.files[0]){loadSig(t.files[0]);t.value=''}});
-const SVK='exam1_saves';
-const getSaves=()=>{try{const a=JSON.parse(localStorage.getItem(SVK));return Array.isArray(a)?a:[]}catch(e){return []}};
-function putSaves(a){try{localStorage.setItem(SVK,JSON.stringify(a));return true}catch(e){alert('تعذّر الحفظ: مساحة المتصفح ممتلئة. احذف بعض النسخ المحفوظة.');return false}}
-const snap=()=>{const d=JSON.parse(JSON.stringify(S));if(d.s)delete d.s.sigimg;return d};
-const svName=()=>{const h=S.h;return [h.subject||'اختبار',h.kind,h.level].filter(Boolean).join(' — ')+(h.date?' ('+h.date+')':'')};
-const svId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
-function autoSave(){let a=getSaves();a.unshift({id:svId(),name:'(تلقائي) '+svName(),ts:Date.now(),data:snap()});let au=0;a=a.filter(e=>!String(e.name).startsWith('(تلقائي)')||++au<=10);putSaves(a)}
-function renderSaves(){const a=getSaves(),n=$('#svname');if(n&&!n.value)n.value=svName();
- $('#svlist').innerHTML=a.length?a.map(e=>`<div class="svi"><b>${esc(e.name)}</b><small>${new Date(e.ts).toLocaleString('en-GB',{dateStyle:'short',timeStyle:'short'})}</small><div class="add"><button class="p" data-a="svOpen" data-id="${e.id}">فتح</button><button data-a="svUpd" data-id="${e.id}">استبدال بالحالي</button><button class="x" data-a="svDel" data-id="${e.id}">حذف</button></div></div>`).join(''):'<small style="color:var(--mut)">لا توجد نسخ محفوظة بعد.</small>'}
-document.addEventListener('change',e=>{const t=e.target;if(!t||t.id!='svfile'||!t.files||!t.files[0])return;const r=new FileReader();
- r.onload=()=>{try{const j=JSON.parse(r.result),arr=Array.isArray(j)?j:j.saves;if(!Array.isArray(arr))throw 0;const ok=arr.filter(x=>x&&x.name&&x.data&&Array.isArray(x.data.ex)).map(x=>({id:svId(),name:String(x.name),ts:x.ts||Date.now(),data:x.data}));if(!ok.length)throw 0;if(putSaves(ok.concat(getSaves()))){renderSaves();alert('تم استيراد '+ok.length+' نسخة.')}}catch(x){alert('الملف غير صالح.')}};
- r.readAsText(t.files[0]);t.value=''});
 let ACT=-1;
 const itemLabel=i=>{const x=S.ex[i];if(x.d==2)return 'سورة — '+(W.n[x.su-1]||'');if(x.d==3)return 'حديث نبوي';return hLabel(x)+(x.t?': '+x.t:'')};
 function openPop(t){const bar=document.querySelector('.bar'),p=$('#addpop'),bt=bar.getBoundingClientRect().bottom;p.style.top=(bt+6)+'px';p.style.maxHeight='calc(100vh - '+(bt+18)+'px)';
@@ -586,7 +656,7 @@ function openPop(t){const bar=document.querySelector('.bar'),p=$('#addpop'),bt=b
  $('#pop-s').innerHTML=['التمرين','السؤال','الوضعية','المسألة','النشاط','الجزء'].map((w,i)=>`<button${i==0?' class="p"':''} data-a="padd" data-k="h" data-w="${w}">${w}</button>`).join('');
  $('#pop-t').innerHTML='<button data-a="padd" data-k="qb">📖 سورة قرآنية</button><button data-a="padd" data-k="hb">📜 حديث نبوي</button>';
  $('#pop-q').innerHTML=TM.map(k=>`<button data-a="padd" data-k="q" data-y="${k}">${T[k]}</button>`).join('');
- $('#pop-l').innerHTML=['dl','bl'].map(k=>`<button data-a="padd" data-k="q" data-y="${k}">${T[k]}</button>`).join('');
+ $('#pop-l').innerHTML=['dl','bl'].map(k=>`<button data-a="padd" data-k="q" data-y="${k}">${T[k]}</button>`).join('')+'<button data-a="padd" data-k="pb">صفحة جديدة</button>';
  $('#addbk').hidden=false;p.hidden=false}
 const closePop=()=>{$('#addbk').hidden=true;$('#addpop').hidden=true};
 function goEdit(i,qj){const sec=$('#exs').children[i];if(!sec)return;let el=sec;if(qj!=null){const qs=sec.querySelectorAll(':scope>.q');el=qs[qj]||sec}
@@ -594,8 +664,9 @@ function goEdit(i,qj){const sec=$('#exs').children[i];if(!sec)return;let el=sec;
 function popAdd(k,y,w){const t=parseInt($('#addto').value),hasT=t>=0&&S.ex[t]&&(!S.ex[t].d||S.ex[t].d==2||S.ex[t].d==3);closePop();
  const at0=hasT?t+1:S.ex.length,ins=o=>{S.ex.splice(at0,0,o);return at0};let ni=-1,qj=null;
  if(k=='h'){const nx=nextOrd(w,at0);ni=ins(w=='الجزء'?{d:1,w:'الجزء',n:nx,t:''}:{w,n:nx,t:'',p:'',q:[]})}
- else if(k=='qb'){const b={d:2,su:'112',fa:'1',ta:'4',pre:'',q:[]};fillQ(b);ni=ins(b)}
+ else if(k=='qb'){const b={d:2,su:'112',fa:'1',ta:'4',pre:'قال تعالى:',q:[]};fillQ(b);ni=ins(b)}
  else if(k=='hb')ni=ins({d:3,e:'',r:'',c:'',q:[]});
+ else if(k=='pb')ni=ins({d:4});
  else{ni=hasT?t:-1;if(ni<0){S.ex.push({w:'التمرين',n:'1',t:'',p:'',q:[]});ni=S.ex.length-1}S.ex[ni].q.push(newQ(y));qj=S.ex[ni].q.length-1}
  ACT=ni;ed();upd();goEdit(ni,qj)}
 function addPage(){const at=(ACT>=0&&ACT<S.ex.length)?ACT+1:S.ex.length;S.ex.splice(at,0,{d:4});ACT=at;ed();upd();goEdit(at)}
@@ -603,10 +674,10 @@ document.addEventListener('focusin',e=>{const c=e.target.closest&&e.target.close
 document.addEventListener('keydown',e=>{if(e.key=='Escape')closePop()});
 $('#addbk').addEventListener('click',closePop);
 let DP=null;
-addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e;$('#inst').style.display=''});
-addEventListener('appinstalled',()=>{$('#inst').style.display='none'});
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();DP=e;document.querySelectorAll('.instb').forEach(b=>b.style.display='')});
+addEventListener('appinstalled',()=>{document.querySelectorAll('.instb').forEach(b=>b.style.display='none')});
 if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol))addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}));
-ed();pv();
+initLib();ed();pv();renderHome();
 </script>
 </body>
 </html>

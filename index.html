@@ -177,6 +177,7 @@ label{gap:5px}
 .bln{height:1.9em}
 .wn{color:var(--warn);font-weight:700;font-size:12px}
 .bgap{margin-top:calc(var(--fs,13pt)*.95)}
+.bsp{height:calc(var(--fs,13pt)*.95)}
 .pcont>.bgap:first-child{margin-top:calc(var(--fs,13pt)*.95)}
 :root{--kg:#1f9d63;--ko:#e8851f;--kb:#3d7be0}
 body[data-v="home"] .b-home,body[data-v="new"] .b-set{display:flex}
@@ -208,9 +209,9 @@ body[data-v="pv"] .b-pv.g3{grid-template-columns:auto repeat(3,1fr)}
 </head>
 <body data-v="home">
 <div class="bar">
- <div class="bg b-home"><div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.14.0</span></div><button class="ib instb" data-a="install" aria-label="تثبيت التطبيق" title="تثبيت التطبيق" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg></button></div>
+ <div class="bg b-home"><div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.14.1</span></div><button class="ib instb" data-a="install" aria-label="تثبيت التطبيق" title="تثبيت التطبيق" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg></button></div>
  <div class="bg b-home"><button class="p bigb" data-a="newx"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg> امتحان / فرض جديد</button></div>
- <div class="bg b-top"><div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.14.0</span></div><button class="ib" data-a="home" aria-label="الصفحة الرئيسية" title="الصفحة الرئيسية"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></button><button class="p pgb" data-a="newx">+ امتحان/فرض</button><button class="ib instb" data-a="install" aria-label="تثبيت التطبيق" title="تثبيت التطبيق" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg></button><span class="tot"></span></div>
+ <div class="bg b-top"><div class="brand"><h1>مولّد أوراق الامتحان</h1><span class="ver">الإصدار 1.14.1</span></div><button class="ib" data-a="home" aria-label="الصفحة الرئيسية" title="الصفحة الرئيسية"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></button><button class="p pgb" data-a="newx">+ امتحان/فرض</button><button class="ib instb" data-a="install" aria-label="تثبيت التطبيق" title="تثبيت التطبيق" style="display:none"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg></button><span class="tot"></span></div>
  <div class="bg b-nav nav">
   <button class="p tb" data-a="popen"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>إضافة</span></button>
   <button class="tb" id="nbq" data-a="view" data-v="ed"><svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg><span>الأسئلة</span></button>
@@ -290,7 +291,8 @@ body[data-v="pv"] .b-pv.g3{grid-template-columns:auto repeat(3,1fr)}
  <div id="v-new" class="view">
   <div class="sec"><h2>إنشاء اختبار جديد</h2>
    <label>النوع<select id="nx-kind"></select></label>
-   <label>المادة<input id="nx-subject"></label>
+   <div class="g"><label>المادة<input id="nx-subject"></label><label>المدة الزمنية<input id="nx-dur" list="durl"></label></div>
+   <datalist id="durl"><option value="ساعة واحدة"><option value="ساعتان"><option value="ساعة ونصف"><option value="ثلاث ساعات"><option value="نصف ساعة"><option value="45 دقيقة"></datalist>
    <div class="g"><label>المستوى<select id="nx-level"></select></label><label>الشعبة / القسم<input id="nx-branch"></label></div>
    <span style="font-size:12px;color:var(--mut);line-height:1.8;display:block;margin-top:8px">يُحفظ الاختبار الحالي تلقائياً. ويُنسخ إلى الاختبار الجديد: المديرية والمؤسسة والسنة والمدة وكل إعدادات التنسيق، وتبقى الأسئلة فارغة.</span>
    <div class="add"><button class="p" data-a="nxgo">إنشاء الاختبار</button></div>
@@ -370,7 +372,7 @@ let HF='',UNDO=null,TT=null;
 function toast(msg,lab,fn){const t=$('#toast');t.innerHTML=`<span>${esc(msg)}</span>${lab?`<button id="tbtn">${esc(lab)}</button>`:''}`;t.hidden=false;t._fn=fn;clearTimeout(TT);TT=setTimeout(()=>{t.hidden=true},8000)}
 function loadExam(id){const d=rj('exam_'+id);if(!d)return false;S=applyDev(normS(d));ACTID=id;localStorage.setItem(AK,id);SY=0;ed();pv();return true}
 function openExam(id){if(id!=ACTID){save();if(!loadExam(id))return}go('ed')}
-function newExamData(o){const b=S||normS(DEF());return normS({h:Object.assign({},b.h,{kind:o.kind,subject:o.subject,level:o.level,branch:o.branch,date:'',datetxt:'',hadj:'0'}),s:JSON.parse(JSON.stringify(b.s)),ex:[{w:'التمرين',n:'1',t:'',p:'',q:[]}]})}
+function newExamData(o){const b=S||normS(DEF());return normS({h:Object.assign({},b.h,{kind:o.kind,subject:o.subject,level:o.level,branch:o.branch,dur:o.dur||b.h.dur||'',date:'',datetxt:'',hadj:'0'}),s:JSON.parse(JSON.stringify(b.s)),ex:[{w:'التمرين',n:'1',t:'',p:'',q:[]}]})}
 function createExam(o){save();const d=newExamData(o),id=uid(),idx=getIdx();wj('exam_'+id,dataOf(d));idx.push(Object.assign({id,name:'',ts:Date.now()},metaOf(d)));wj(LK,idx);loadExam(id);go('ed')}
 function dupExam(id){save();const d=rj('exam_'+id),m=getIdx().find(e=>e.id==id);if(!d||!m)return;const nid=uid(),idx=getIdx();wj('exam_'+nid,d);idx.push(Object.assign({},m,{id:nid,name:titleOf(m)+' (نسخة)',ts:Date.now()}));wj(LK,idx);renderHome();toast('تم تكرار الاختبار')}
 function delExam(id){const idx=getIdx(),m=idx.find(e=>e.id==id);if(!m)return;UNDO={m,d:rj('exam_'+id)};
@@ -387,8 +389,8 @@ function renderHome(){const q=String(($('#hq')||{}).value||'').trim();let a=getI
  const l=$('#hlist');if(l)l.innerHTML=a.length?a.map(cardHtml).join(''):'<div class="empty">'+(getIdx().length?'لا توجد نتائج مطابقة.':'لا توجد اختبارات بعد.<br>اضغط «+ امتحان / فرض جديد» لإنشاء أول اختبار.')+'</div>';
  document.querySelectorAll('.chip').forEach(c=>c.classList.toggle('on',(c.dataset.f||'')==HF))}
 function prepNew(){const k=$('#nx-kind'),l=$('#nx-level');if(k&&!k.options.length){k.innerHTML=document.querySelector('[data-h="kind"]').innerHTML;l.innerHTML=document.querySelector('[data-h="level"]').innerHTML}
- k.value=S.h.kind;l.value=S.h.level;$('#nx-subject').value=S.h.subject||'';$('#nx-branch').value=S.h.branch||''}
-function nxGo(){createExam({kind:$('#nx-kind').value,subject:$('#nx-subject').value.trim(),level:$('#nx-level').value,branch:$('#nx-branch').value.trim()})}
+ k.value=S.h.kind;l.value=S.h.level;$('#nx-subject').value=S.h.subject||'';$('#nx-dur').value=S.h.dur||'';$('#nx-branch').value=S.h.branch||''}
+function nxGo(){createExam({kind:$('#nx-kind').value,subject:$('#nx-subject').value.trim(),level:$('#nx-level').value,branch:$('#nx-branch').value.trim(),dur:$('#nx-dur').value.trim()})}
 function exportLib(){const arr=getIdx().map(m=>({id:m.id,name:m.name||'',ts:m.ts,data:rj('exam_'+m.id)})).filter(x=>x.data);if(!arr.length){alert('لا توجد اختبارات لتصديرها.');return}
  const u=URL.createObjectURL(new Blob([JSON.stringify({app:'exam-maker',v:2,exams:arr})],{type:'application/json'})),l=document.createElement('a');l.href=u;l.download='exam-maker-exams.json';document.body.appendChild(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),2000)}
 document.addEventListener('change',e=>{const t=e.target;if(!t||t.id!='lfile'||!t.files||!t.files[0])return;const r=new FileReader();
@@ -433,7 +435,7 @@ const qblock=(x,i)=>{const a=x.q||[],up=a.filter(q=>q.up=='1'),dn=a.filter(q=>q.
  const upH=up.map(q=>{const n=num(q);return n==-1?`<div class="qq ins">${nl(q.x)}</div>`:qhtml(q,n,true).replace('class="qq','class="qq ins')}).join('');
  const upL=up.map(linesHtml).join('');
  const dnH=dn.map(q=>isLine(q)?qhtml(q,0):qhtml(q,num(q))).join('');
- return (upH+box).replace('class="','class="bgap ')+upL+dnH};
+ return (upH+box).replace('class="','class="bgap ')+upL+dnH+'<div class="lns bsp"></div>'};
 const ansColor=()=>/^#[0-9a-f]{6}$/i.test(S.s.ansclr||'')?S.s.ansclr:'#000000';
 const ahead='<div class="arow ah"><div>السؤال</div><div>الإجابة النموذجية</div><div>العلامة</div></div>';
 const arows=qs=>(qs||[]).filter(q=>!isLine(q)).map((q,j)=>`<div class="arow"><div>${esc(qlab(q,j+1))}</div><div style="color:${ansColor()}">${ansOf(q)}</div><div>${q.pt?esc(q.pt):''}</div></div>`).join('')||'<div class="arow"><div>&nbsp;</div><div></div><div></div></div>';
@@ -653,7 +655,7 @@ function openPop(t){const bar=document.querySelector('.bar'),p=$('#addpop'),bt=b
  const w=(S.s.lab||'التمرين|m').split('|')[0].replace(/^ال/,''),hold=S.ex.map((x,i)=>(!x.d||x.d==2||x.d==3)?i:-1).filter(i=>i>=0);
  const tg=t!=null&&t!==''?+t:(hold.includes(ACT)?ACT:(hold.length?hold[hold.length-1]:-1));
  $('#addto').innerHTML=hold.length?hold.map(i=>`<option value="${i}"${i==tg?' selected':''}>${esc(itemLabel(i))}</option>`).join(''):'<option value="-1">(لا يوجد بعد — يُنشأ تمرين)</option>';
- $('#pop-s').innerHTML=['التمرين','السؤال','الوضعية','المسألة','النشاط','الجزء'].map((w,i)=>`<button${i==0?' class="p"':''} data-a="padd" data-k="h" data-w="${w}">${w}</button>`).join('');
+ $('#pop-s').innerHTML=['السؤال','الجزء'].map((w,i)=>`<button${i==0?' class="p"':''} data-a="padd" data-k="h" data-w="${w}">${w}</button>`).join('');
  $('#pop-t').innerHTML='<button data-a="padd" data-k="qb">📖 سورة قرآنية</button><button data-a="padd" data-k="hb">📜 حديث نبوي</button>';
  $('#pop-q').innerHTML=TM.map(k=>`<button data-a="padd" data-k="q" data-y="${k}">${T[k]}</button>`).join('');
  $('#pop-l').innerHTML=['dl','bl'].map(k=>`<button data-a="padd" data-k="q" data-y="${k}">${T[k]}</button>`).join('')+'<button data-a="padd" data-k="pb">صفحة جديدة</button>';
